@@ -27,7 +27,7 @@ const UsuarioSchema = Schema({
         type: Boolean,
         default: false
     },
-});
+},{ timestamps: true });
 
 
 UsuarioSchema.method('toJSON', function() {

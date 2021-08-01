@@ -20,6 +20,9 @@
     "google-auth-library": "^6.0.3",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.21",
-    "uuid": "^8.2.0"
+    "node-schedule": "^2.0.0",
+    "request": "^2.88.2",
+    "uuid": "^8.2.0",
+    "swisseph": "^0.5.15"
   }
 }

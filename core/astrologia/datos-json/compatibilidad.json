@@ -1,0 +1,1043 @@
+{
+  "ascendente": [
+    {
+      "nombre": "Ascendente",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "MedioCielo",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Descendente",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "BajoCielo",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Sol",
+      "armonia": "Positivo",
+      "puntos": 3
+    },
+    {
+      "nombre": "Luna",
+      "armonia": "Negativo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Mercurio",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Venus",
+      "armonia": "Negativo",
+      "puntos": 2
+    },
+    {
+      "nombre": "Marte",
+      "armonia": "Positivo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Jupiter",
+      "armonia": "Positivo",
+      "puntos": 3
+    },
+    {
+      "nombre": "Saturno",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Urano",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Neptuno",
+      "armonia": "Negativo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Pluton",
+      "armonia": "Neutro",
+      "puntos": 0
+    }
+  ],
+  "medioCielo": [
+    {
+      "nombre": "Ascendente",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "MedioCielo",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Descendente",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "BajoCielo",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Sol",
+      "armonia": "Negativo",
+      "puntos": 2
+    },
+    {
+      "nombre": "Luna",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Mercurio",
+      "armonia": "Positivo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Venus",
+      "armonia": "Negativo",
+      "puntos": 3
+    },
+    {
+      "nombre": "Marte",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Jupiter",
+      "armonia": "Negativo",
+      "puntos": 2
+    },
+    {
+      "nombre": "Saturno",
+      "armonia": "Positivo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Urano",
+      "armonia": "Negativo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Neptuno",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Pluton",
+      "armonia": "Negativo",
+      "puntos": 4
+    }
+  ],
+  "descendente": [
+    {
+      "nombre": "Ascendente",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "MedioCielo",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Descendente",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+
+    {
+      "nombre": "BajoCielo",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Sol",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Luna",
+      "armonia": "Positivo",
+      "puntos": 2
+    },
+    {
+      "nombre": "Mercurio",
+      "armonia": "Negativo",
+      "puntos": 3
+    },
+    {
+      "nombre": "Venus",
+      "armonia": "Positivo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Marte",
+      "armonia": "Negativo",
+      "puntos": 2
+    },
+    {
+      "nombre": "Jupiter",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Saturno",
+      "armonia": "Negativo",
+      "puntos": 3
+    },
+    {
+      "nombre": "Urano",
+      "armonia": "Positivo",
+      "puntos": 3
+    },
+    {
+      "nombre": "Neptuno",
+      "armonia": "Positivo",
+      "puntos": 2
+    },
+    {
+      "nombre": "Pluton",
+      "armonia": "Positivo",
+      "puntos": 3
+    }
+  ],
+
+  "bajoCielo": [
+    {
+      "nombre": "Ascendente",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "MedioCielo",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Descendente",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "BajoCielo",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Sol",
+      "armonia": "Negativo",
+      "puntos": 3
+    },
+    {
+      "nombre": "Luna",
+      "armonia": "Positivo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Mercurio",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Venus",
+      "armonia": "Positivo",
+      "puntos": 2
+    },
+    {
+      "nombre": "Marte",
+      "armonia": "Negativo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Jupiter",
+      "armonia": "Negativo",
+      "puntos": 3
+    },
+    {
+      "nombre": "Saturno",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Urano",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Neptuno",
+      "armonia": "Positivo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Pluton",
+      "armonia": "Neutro",
+      "puntos": 0
+    }
+  ],
+
+  "sol": [
+    {
+      "nombre": "Ascendente",
+      "armonia": "Positivo",
+      "puntos": 3
+    },
+
+    {
+      "nombre": "MedioCielo",
+      "armonia": "Negativo",
+      "puntos": 2
+    },
+    {
+      "nombre": "Descendente",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "BajoCielo",
+      "armonia": "Negativo",
+      "puntos": 3
+    },
+
+    {
+      "nombre": "Sol",
+      "armonia": "Positivo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Luna",
+      "armonia": "Negativo",
+      "puntos": 3
+    },
+    {
+      "nombre": "Mercurio",
+      "armonia": "Negativo",
+      "puntos": 2
+    },
+    {
+      "nombre": "Venus",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Marte",
+      "armonia": "Positivo",
+      "puntos": 3
+    },
+    {
+      "nombre": "Jupiter",
+      "armonia": "Positivo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Saturno",
+      "armonia": "Negativo",
+      "puntos": 2
+    },
+    {
+      "nombre": "Urano",
+      "armonia": "Positivo",
+      "puntos": 2
+    },
+    {
+      "nombre": "Neptuno",
+      "armonia": "Negativo",
+      "puntos": 3
+    },
+    {
+      "nombre": "Pluton",
+      "armonia": "Positivo",
+      "puntos": 2
+    }
+  ],
+
+  "luna": [
+    {
+      "nombre": "Ascendente",
+      "armonia": "Negativo",
+      "puntos": 4
+    },
+
+    {
+      "nombre": "MedioCielo",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+
+    {
+      "nombre": "Descendente",
+      "armonia": "Positivo",
+      "puntos": 2
+    },
+    {
+      "nombre": "BajoCielo",
+      "armonia": "Positivo",
+      "puntos": 4
+    },
+
+    {
+      "nombre": "Sol",
+      "armonia": "Negativo",
+      "puntos": 3
+    },
+    {
+      "nombre": "Luna",
+      "armonia": "Positivo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Mercurio",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Venus",
+      "armonia": "Positivo",
+      "puntos": 2
+    },
+    {
+      "nombre": "Marte",
+      "armonia": "Negativo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Jupiter",
+      "armonia": "Negativo",
+      "puntos": 3
+    },
+    {
+      "nombre": "Saturno",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Urano",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Neptuno",
+      "armonia": "Positivo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Pluton",
+      "armonia": "Neutro",
+      "puntos": 0
+    }
+  ],
+  "mercurio": [
+    {
+      "nombre": "Ascendente",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+
+    {
+      "nombre": "MedioCielo",
+      "armonia": "Positivo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Descendente",
+      "armonia": "Negativo",
+      "puntos": 3
+    },
+    {
+      "nombre": "BajoCielo",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+
+    {
+      "nombre": "Sol",
+      "armonia": "Negativo",
+      "puntos": 2
+    },
+    {
+      "nombre": "Luna",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Mercurio",
+      "armonia": "Positivo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Venus",
+      "armonia": "Negativo",
+      "puntos": 3
+    },
+    {
+      "nombre": "Marte",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Jupiter",
+      "armonia": "Negativo",
+      "puntos": 2
+    },
+    {
+      "nombre": "Saturno",
+      "armonia": "Positivo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Urano",
+      "armonia": "Negativo",
+      "puntos": 3
+    },
+    {
+      "nombre": "Neptuno",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Pluton",
+      "armonia": "Negativo",
+      "puntos": 4
+    }
+  ],
+
+  "venus": [
+    {
+      "nombre": "Ascendente",
+      "armonia": "Negativo",
+      "puntos": 2
+    },
+    {
+      "nombre": "MedioCielo",
+      "armonia": "Negativo",
+      "puntos": 3
+    },
+
+    {
+      "nombre": "Descendente",
+      "armonia": "Positivo",
+      "puntos": 4
+    },
+    {
+      "nombre": "BajoCielo",
+      "armonia": "Positivo",
+      "puntos": 2
+    },
+
+    {
+      "nombre": "Sol",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Luna",
+      "armonia": "Positivo",
+      "puntos": 2
+    },
+    {
+      "nombre": "Mercurio",
+      "armonia": "Negativo",
+      "puntos": 3
+    },
+    {
+      "nombre": "Venus",
+      "armonia": "Positivo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Marte",
+      "armonia": "Negativo",
+      "puntos": 2
+    },
+    {
+      "nombre": "Jupiter",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Saturno",
+      "armonia": "Negativo",
+      "puntos": 3
+    },
+    {
+      "nombre": "Urano",
+      "armonia": "Positivo",
+      "puntos": 3
+    },
+    {
+      "nombre": "Neptuno",
+      "armonia": "Positivo",
+      "puntos": 2
+    },
+    {
+      "nombre": "Pluton",
+      "armonia": "Positivo",
+      "puntos": 3
+    }
+  ],
+
+  "marte": [
+    {
+      "nombre": "Ascendente",
+      "armonia": "Positivo",
+      "puntos": 4
+    },
+
+    {
+      "nombre": "MedioCielo",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Descendente",
+      "armonia": "Negativo",
+      "puntos": 2
+    },
+    {
+      "nombre": "BajoCielo",
+      "armonia": "Negativo",
+      "puntos": 4
+    },
+
+    {
+      "nombre": "Sol",
+      "armonia": "Positivo",
+      "puntos": 3
+    },
+    {
+      "nombre": "Luna",
+      "armonia": "Negativo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Mercurio",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Venus",
+      "armonia": "Negativo",
+      "puntos": 2
+    },
+    {
+      "nombre": "Marte",
+      "armonia": "Positivo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Jupiter",
+      "armonia": "Positivo",
+      "puntos": 3
+    },
+    {
+      "nombre": "Saturno",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Urano",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Neptuno",
+      "armonia": "Negativo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Pluton",
+      "armonia": "Neutro",
+      "puntos": 0
+    }
+  ],
+
+  "jupiter": [
+    {
+      "nombre": "Ascendente",
+      "armonia": "Positivo",
+      "puntos": 3
+    },
+
+    {
+      "nombre": "MedioCielo",
+      "armonia": "Negativo",
+      "puntos": 2
+    },
+    {
+      "nombre": "Descendente",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "BajoCielo",
+      "armonia": "Negativo",
+      "puntos": 3
+    },
+
+    {
+      "nombre": "Sol",
+      "armonia": "Positivo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Luna",
+      "armonia": "Negativo",
+      "puntos": 3
+    },
+    {
+      "nombre": "Mercurio",
+      "armonia": "Negativo",
+      "puntos": 2
+    },
+    {
+      "nombre": "Venus",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Marte",
+      "armonia": "Positivo",
+      "puntos": 3
+    },
+    {
+      "nombre": "Jupiter",
+      "armonia": "Positivo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Saturno",
+      "armonia": "Negativo",
+      "puntos": 2
+    },
+    {
+      "nombre": "Urano",
+      "armonia": "Positivo",
+      "puntos": 2
+    },
+    {
+      "nombre": "Neptuno",
+      "armonia": "Negativo",
+      "puntos": 3
+    },
+    {
+      "nombre": "Pluton",
+      "armonia": "Positivo",
+      "puntos": 2
+    }
+  ],
+
+  "saturno": [
+    {
+      "nombre": "Ascendente",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "MedioCielo",
+      "armonia": "Positivo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Descendente",
+      "armonia": "Negativo",
+      "puntos": 3
+    },
+    {
+      "nombre": "BajoCielo",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+
+    {
+      "nombre": "Sol",
+      "armonia": "Negativo",
+      "puntos": 2
+    },
+    {
+      "nombre": "Luna",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Mercurio",
+      "armonia": "Positivo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Venus",
+      "armonia": "Negativo",
+      "puntos": 3
+    },
+    {
+      "nombre": "Marte",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Jupiter",
+      "armonia": "Negativo",
+      "puntos": 2
+    },
+    {
+      "nombre": "Saturno",
+      "armonia": "Positivo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Urano",
+      "armonia": "Negativo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Neptuno",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Pluton",
+      "armonia": "Negativo",
+      "puntos": 4
+    }
+  ],
+
+  "urano": [
+    {
+      "nombre": "Ascendente",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+
+    {
+      "nombre": "MedioCielo",
+      "armonia": "Negativo",
+      "puntos": 4
+    },
+
+    {
+      "nombre": "Descendente",
+      "armonia": "Positivo",
+      "puntos": 3
+    },
+    {
+      "nombre": "BajoCielo",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+
+    {
+      "nombre": "Sol",
+      "armonia": "Positivo",
+      "puntos": 2
+    },
+    {
+      "nombre": "Luna",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Mercurio",
+      "armonia": "Negativo",
+      "puntos": 3
+    },
+    {
+      "nombre": "Venus",
+      "armonia": "Positivo",
+      "puntos": 3
+    },
+    {
+      "nombre": "Marte",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Jupiter",
+      "armonia": "Positivo",
+      "puntos": 2
+    },
+    {
+      "nombre": "Saturno",
+      "armonia": "Negativo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Urano",
+      "armonia": "Positivo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Neptuno",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Pluton",
+      "armonia": "Positivo",
+      "puntos": 4
+    }
+  ],
+
+  "neptuno": [
+    {
+      "nombre": "Ascendente",
+      "armonia": "Negativo",
+      "puntos": 4
+    },
+
+    {
+      "nombre": "MedioCielo",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Descendente",
+      "armonia": "Positivo",
+      "puntos": 2
+    },
+
+    {
+      "nombre": "BajoCielo",
+      "armonia": "Positivo",
+      "puntos": 4
+    },
+
+    {
+      "nombre": "Sol",
+      "armonia": "Negativo",
+      "puntos": 3
+    },
+    {
+      "nombre": "Luna",
+      "armonia": "Positivo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Mercurio",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Venus",
+      "armonia": "Positivo",
+      "puntos": 2
+    },
+    {
+      "nombre": "Marte",
+      "armonia": "Negativo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Jupiter",
+      "armonia": "Negativo",
+      "puntos": 3
+    },
+    {
+      "nombre": "Saturno",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Urano",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Neptuno",
+      "armonia": "Positivo",
+      "puntos": 4
+    },
+
+    {
+      "nombre": "Pluton",
+      "armonia": "Neutro",
+      "puntos": 0
+    }
+  ],
+
+  "pluton": [
+    {
+      "nombre": "Ascendente",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+
+    {
+      "nombre": "MedioCielo",
+      "armonia": "Negativo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Descendente",
+      "armonia": "Positivo",
+      "puntos": 3
+    },
+    {
+      "nombre": "BajoCielo",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Sol",
+      "armonia": "Positivo",
+      "puntos": 2
+    },
+    {
+      "nombre": "Luna",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Mercurio",
+      "armonia": "Negativo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Venus",
+      "armonia": "Positivo",
+      "puntos": 3
+    },
+    {
+      "nombre": "Marte",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Jupiter",
+      "armonia": "Positivo",
+      "puntos": 2
+    },
+    {
+      "nombre": "Saturno",
+      "armonia": "Negativo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Urano",
+      "armonia": "Positivo",
+      "puntos": 4
+    },
+    {
+      "nombre": "Neptuno",
+      "armonia": "Neutro",
+      "puntos": 0
+    },
+    {
+      "nombre": "Pluton",
+      "armonia": "Positivo",
+      "puntos": 4
+    }
+  ]
+}

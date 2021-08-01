@@ -1,0 +1,468 @@
+{
+  "ascendente": [
+    {
+      "signo": "Aries",
+      "casa": 1,
+      "estado": "Regente",
+      "puntos": 4
+    },
+    {
+      "signo": "Escorpio",
+      "casa": 8,
+      "estado": "Regente",
+      "puntos": 4
+    },
+    {
+      "signo": "Capricornio",
+      "casa": 10,
+      "estado": "Exaltacion",
+      "puntos": 2
+    },
+    {
+      "signo": "Libra",
+      "casa": 7,
+      "estado": "Detrimento",
+      "puntos": 2
+    },
+    {
+      "signo": "Tauro",
+      "casa": 2,
+      "estado": "Detrimento",
+      "puntos": 2
+    },
+    {
+      "signo": "Cancer",
+      "casa": 4,
+      "estado": "Caida",
+      "puntos": 4
+    }
+  ],
+  "medioCielo": [
+    {
+      "signo": "Capricornio",
+      "casa": 10,
+      "estado": "Regente",
+      "puntos": 4
+    },
+    {
+      "signo": "Acuario",
+      "casa": 11,
+      "estado": "Regente",
+      "puntos": 4
+    },
+    {
+      "signo": "Libra",
+      "casa": 7,
+      "estado": "Exaltacion",
+      "puntos": 2
+    },
+    {
+      "signo": "Cancer",
+      "casa": 4,
+      "estado": "Detrimento",
+      "puntos": 2
+    },
+    {
+      "signo": "Leo",
+      "casa": 5,
+      "estado": "Detrimento",
+      "puntos": 2
+    },
+    {
+      "signo": "Aries",
+      "casa": 1,
+      "estado": "Caida",
+      "puntos": 4
+    }
+  ],
+  "descendente": [
+    {
+      "signo": "Tauro",
+      "casa": 2,
+      "estado": "Regente",
+      "puntos": 4
+    },
+    {
+      "signo": "Libra",
+      "casa": 7,
+      "estado": "Regente",
+      "puntos": 4
+    },
+    {
+      "signo": "Piscis",
+      "casa": 12,
+      "estado": "Exaltacion",
+      "puntos": 2
+    },
+    {
+      "signo": "Escorpio",
+      "casa": 8,
+      "estado": "Detrimento",
+      "puntos": 2
+    },
+    {
+      "signo": "Aries",
+      "casa": 1,
+      "estado": "Detrimento",
+      "puntos": 2
+    },
+    {
+      "signo": "Virgo",
+      "casa": 6,
+      "estado": "Caida",
+      "puntos": 4
+    }
+  ],
+  "bajoCielo": [
+    {
+      "signo": "Cancer",
+      "casa": 4,
+      "estado": "Regente",
+      "puntos": 4
+    },
+    {
+      "signo": "Tauro",
+      "casa": 2,
+      "estado": "Exaltacion",
+      "puntos": 2
+    },
+    {
+      "signo": "Capricornio",
+      "casa": 10,
+      "estado": "Detrimento",
+      "puntos": 2
+    },
+    {
+      "signo": "Escorpio",
+      "casa": 8,
+      "estado": "Caida",
+      "puntos": 4
+    }
+  ],
+  "sol": [
+    {
+      "signo": "Leo",
+      "casa": 5,
+      "estado": "Regente",
+      "puntos": 4
+    },
+    {
+      "signo": "Aries",
+      "casa": 1,
+      "estado": "Exaltacion",
+      "puntos": 2
+    },
+    {
+      "signo": "Acuario",
+      "casa": 11,
+      "estado": "Detrimento",
+      "puntos": 2
+    },
+    {
+      "signo": "Libra",
+      "casa": 7,
+      "estado": "Caida",
+      "puntos": 4
+    }
+  ],
+  "luna": [
+    {
+      "signo": "Cancer",
+      "casa": 4,
+      "estado": "Regente",
+      "puntos": 4
+    },
+    {
+      "signo": "Tauro",
+      "casa": 2,
+      "estado": "Exaltacion",
+      "puntos": 2
+    },
+    {
+      "signo": "Capricornio",
+      "casa": 10,
+      "estado": "Detrimento",
+      "puntos": 2
+    },
+    {
+      "signo": "Escorpio",
+      "casa": 8,
+      "estado": "Caida",
+      "puntos": 4
+    }
+  ],
+  "mercurio": [
+    {
+      "signo": "Gemenis",
+      "casa": 3,
+      "estado": "Regente",
+      "puntos": 4
+    },
+    {
+      "signo": "Virgo",
+      "casa": 6,
+      "estado": "Regente",
+      "puntos": 4
+    },
+    {
+      "signo": "Acuario",
+      "casa": 11,
+      "estado": "Exaltacion",
+      "puntos": 2
+    },
+    {
+      "signo": "Sagitario",
+      "casa": 10,
+      "estado": "Detrimento",
+      "puntos": 2
+    },
+    {
+      "signo": "Piscis",
+      "casa": 12,
+      "estado": "Detrimento",
+      "puntos": 2
+    },
+
+    {
+      "signo": "Leo",
+      "casa": 5,
+      "estado": "Caida",
+      "puntos": 4
+    }
+  ],
+  "venus": [
+    {
+      "signo": "Tauro",
+      "casa": 2,
+      "estado": "Regente",
+      "puntos": 4
+    },
+    {
+      "signo": "Libra",
+      "casa": 7,
+      "estado": "Regente",
+      "puntos": 4
+    },
+    {
+      "signo": "Piscis",
+      "casa": 12,
+      "estado": "Exaltacion",
+      "puntos": 2
+    },
+    {
+      "signo": "Escorpio",
+      "casa": 8,
+      "estado": "Detrimento",
+      "puntos": 2
+    },
+    {
+      "signo": "Aries",
+      "casa": 1,
+      "estado": "Detrimento",
+      "puntos": 2
+    },
+    {
+      "signo": "Virgo",
+      "casa": 6,
+      "estado": "Caida",
+      "puntos": 4
+    }
+  ],
+  "marte": [
+    {
+      "signo": "Aries",
+      "casa": 1,
+      "estado": "Regente",
+      "puntos": 4
+    },
+    {
+      "signo": "Escorpio",
+      "casa": 8,
+      "estado": "Regente",
+      "puntos": 4
+    },
+    {
+      "signo": "Capricornio",
+      "casa": 10,
+      "estado": "Exaltacion",
+      "puntos": 2
+    },
+    {
+      "signo": "Libra",
+      "casa": 7,
+      "estado": "Detrimento",
+      "puntos": 2
+    },
+    {
+      "signo": "Tauro",
+      "casa": 2,
+      "estado": "Detrimento",
+      "puntos": 2
+    },
+    {
+      "signo": "Cancer",
+      "casa": 4,
+      "estado": "Caida",
+      "puntos": 4
+    }
+  ],
+  "jupiter": [
+    {
+      "signo": "Sagitario",
+      "casa": 10,
+      "estado": "Regente",
+      "puntos": 4
+    },
+    {
+      "signo": "Piscis",
+      "casa": 12,
+      "estado": "Regente",
+      "puntos": 4
+    },
+    {
+      "signo": "Cancer",
+      "casa": 4,
+      "estado": "Exaltacion",
+      "puntos": 2
+    },
+    {
+      "signo": "Geminis",
+      "casa": 3,
+      "estado": "Detrimento",
+      "puntos": 2
+    },
+    {
+      "signo": "Virgo",
+      "casa": 6,
+      "estado": "Detrimento",
+      "puntos": 2
+    },
+    {
+      "signo": "Capricornio",
+      "casa": 10,
+      "estado": "Caida",
+      "puntos": 4
+    }
+  ],
+  "saturno": [
+    {
+      "signo": "Capricornio",
+      "casa": 10,
+      "estado": "Regente",
+      "puntos": 4
+    },
+    {
+      "signo": "Acuario",
+      "casa": 11,
+      "estado": "Regente",
+      "puntos": 4
+    },
+    {
+      "signo": "Libra",
+      "casa": 7,
+      "estado": "Exaltacion",
+      "puntos": 2
+    },
+    {
+      "signo": "Cancer",
+      "casa": 4,
+      "estado": "Detrimento",
+      "puntos": 2
+    },
+    {
+      "signo": "Leo",
+      "casa": 5,
+      "estado": "Detrimento",
+      "puntos": 2
+    },
+    {
+      "signo": "Aries",
+      "casa": 1,
+      "estado": "Caida",
+      "puntos": 4
+    }
+  ],
+  "urano": [
+    {
+      "signo": "Acuario",
+      "casa": 11,
+      "estado": "Regente",
+      "puntos": 4
+    },
+    {
+      "signo": "Escorpio",
+      "casa": 8,
+      "estado": "Exaltacion",
+      "puntos": 2
+    },
+    {
+      "signo": "Leo",
+      "casa": 5,
+      "estado": "Detrimento",
+      "puntos": 2
+    },
+
+    {
+      "signo": "Tauro",
+      "casa": 2,
+      "estado": "Caida",
+      "puntos": 4
+    }
+  ],
+  "neptuno": [
+    {
+      "signo": "Piscis",
+      "casa": 12,
+      "estado": "Regente",
+      "puntos": 4
+    },
+
+    {
+      "signo": "Cancer",
+      "casa": 4,
+      "estado": "Exaltacion",
+      "puntos": 2
+    },
+    {
+      "signo": "Virgo",
+      "casa": 6,
+      "estado": "Detrimento",
+      "puntos": 2
+    },
+
+    {
+      "signo": "Capricornio",
+      "casa": 10,
+      "estado": "Caida",
+      "puntos": 4
+    }
+  ],
+  "pluton": [
+    {
+      "signo": "Escorpio",
+      "casa": 8,
+      "estado": "Regente",
+      "puntos": 4
+    },
+
+    {
+      "signo": "Piscis",
+      "casa": 12,
+      "estado": "Exaltacion",
+      "puntos": 2
+    },
+
+    {
+      "signo": "Tauro",
+      "casa": 2,
+      "estado": "Detrimento",
+      "puntos": 2
+    },
+    {
+      "signo": "Virgo",
+      "casa": 6,
+      "estado": "Caida",
+      "puntos": 4
+    }
+  ]
+}

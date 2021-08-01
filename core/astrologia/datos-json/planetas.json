@@ -1,0 +1,62 @@
+
+{
+  "planetas": [
+    {
+      "nombre": "Ascendente",
+      "abreviatura": "AC"
+
+    },
+    {
+      "nombre": "MedioCielo",
+      "abreviatura": "MC"
+    },
+    {
+      "nombre": "Descendente",
+      "abreviatura": "DC"
+    },
+    {
+      "nombre": "BajoCielo",
+      "abreviatura": "BC"
+    },
+    {
+      "nombre": "Sol",
+        "abreviatura": 0
+    },
+    {
+      "nombre": "Luna",
+        "abreviatura": 1
+    },
+    {
+      "nombre": "Mercurio",
+        "abreviatura": 2
+    },
+    {
+      "nombre": "Venus",
+        "abreviatura": 3
+    },
+    {
+      "nombre": "Marte",
+        "abreviatura": 4
+    },
+    {
+      "nombre": "Jupiter",
+        "abreviatura": 5
+    },
+    {
+      "nombre": "Saturno",
+        "abreviatura": 6
+    },
+    {
+      "nombre": "Urano",
+        "abreviatura": 7
+    },
+    {
+      "nombre": "Neptuno",
+        "abreviatura": 8
+    },
+    {
+      "nombre": "Pluton",
+        "abreviatura": 9
+    }
+  ]
+}

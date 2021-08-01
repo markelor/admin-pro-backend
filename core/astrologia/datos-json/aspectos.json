@@ -1,0 +1,349 @@
+{
+  "conjuncion": [
+    {
+      "gradosAspecto": 354,
+      "puntosAspecto": 1
+    },
+    {
+      "gradosAspecto": 355,
+      "puntosAspecto": 2
+    },
+    {
+      "gradosAspecto": 356,
+      "puntosAspecto": 3
+    },
+    {
+      "gradosAspecto": 357,
+      "puntosAspecto": 4
+    },
+    {
+      "gradosAspecto": 358,
+      "puntosAspecto": 5
+    },
+    {
+      "gradosAspecto": 359,
+      "puntosAspecto": 6
+    },
+    {
+      "gradosAspecto": 0,
+      "puntosAspecto": 7
+    },
+    {
+      "gradosAspecto": 1,
+      "puntosAspecto": 6
+    },
+    {
+      "gradosAspecto": 2,
+      "puntosAspecto": 5
+    },
+    {
+      "gradosAspecto": 3,
+      "puntosAspecto": 4
+    },
+    {
+      "gradosAspecto": 4,
+      "puntosAspecto": 3
+    },
+    {
+      "gradosAspecto": 5,
+      "puntosAspecto": 2
+    },
+    {
+      "gradosAspecto": 6,
+      "puntosAspecto": 1
+    }
+  ],
+  "sextil": [
+    {
+      "gradosAspecto": 57,
+      "puntosAspecto": 1
+    },
+    {
+      "gradosAspecto": 58,
+      "puntosAspecto": 2
+    },
+    {
+      "gradosAspecto": 59,
+      "puntosAspecto": 3
+    },
+    {
+      "gradosAspecto": 60,
+      "puntosAspecto": 4
+    },
+    {
+      "gradosAspecto": 61,
+      "puntosAspecto": 3
+    },
+    {
+      "gradosAspecto": 62,
+      "puntosAspecto": 2
+    },
+    {
+      "gradosAspecto": 63,
+      "puntosAspecto": 1
+    },
+    {
+      "gradosAspecto": 297,
+      "puntosAspecto": 1
+    },
+    {
+      "gradosAspecto": 298,
+      "puntosAspecto": 2
+    },
+    {
+      "gradosAspecto": 299,
+      "puntosAspecto": 3
+    },
+    {
+      "gradosAspecto": 300,
+      "puntosAspecto": 4
+    },
+    {
+      "gradosAspecto": 301,
+      "puntosAspecto": 3
+    },
+    {
+      "gradosAspecto": 302,
+      "puntosAspecto": 2
+    },
+    {
+      "gradosAspecto": 303,
+      "puntosAspecto": 1
+    }
+  ],
+  "cuadratura": [
+    {
+      "gradosAspecto": 85,
+      "puntosAspecto": 1
+    },
+    {
+      "gradosAspecto": 86,
+      "puntosAspecto": 2
+    },
+    {
+      "gradosAspecto": 87,
+      "puntosAspecto": 3
+    },
+    {
+      "gradosAspecto": 88,
+      "puntosAspecto": 4
+    },
+    {
+      "gradosAspecto": 89,
+      "puntosAspecto": 5
+    },
+    {
+      "gradosAspecto": 90,
+      "puntosAspecto": 6
+    },
+    {
+      "gradosAspecto": 91,
+      "puntosAspecto": 5
+    },
+    {
+      "gradosAspecto": 92,
+      "puntosAspecto": 4
+    },
+    {
+      "gradosAspecto": 93,
+      "puntosAspecto": 3
+    },
+    {
+      "gradosAspecto": 94,
+      "puntosAspecto": 2
+    },
+    {
+      "gradosAspecto": 95,
+      "puntosAspecto": 1
+    },
+    {
+      "gradosAspecto": 265,
+      "puntosAspecto": 1
+    },
+    {
+      "gradosAspecto": 266,
+      "puntosAspecto": 2
+    },
+    {
+      "gradosAspecto": 267,
+      "puntosAspecto": 3
+    },
+    {
+      "gradosAspecto": 268,
+      "puntosAspecto": 4
+    },
+    {
+      "gradosAspecto": 269,
+      "puntosAspecto": 5
+    },
+    {
+      "gradosAspecto": 270,
+      "puntosAspecto": 6
+    },
+    {
+      "gradosAspecto": 271,
+      "puntosAspecto": 5
+    },
+    {
+      "gradosAspecto": 272,
+      "puntosAspecto": 4
+    },
+    {
+      "gradosAspecto": 273,
+      "puntosAspecto": 3
+    },
+    {
+      "gradosAspecto": 274,
+      "puntosAspecto": 2
+    },
+    {
+      "gradosAspecto": 275,
+      "puntosAspecto": 1
+    }
+  ],
+  "trigono": [
+    {
+      "gradosAspecto": 115,
+      "puntosAspecto": 1
+    },
+    {
+      "gradosAspecto": 116,
+      "puntosAspecto": 2
+    },
+    {
+      "gradosAspecto": 117,
+      "puntosAspecto": 3
+    },
+    {
+      "gradosAspecto": 118,
+      "puntosAspecto": 4
+    },
+    {
+      "gradosAspecto": 119,
+      "puntosAspecto": 5
+    },
+    {
+      "gradosAspecto": 120,
+      "puntosAspecto": 6
+    },
+    {
+      "gradosAspecto": 121,
+      "puntosAspecto": 5
+    },
+    {
+      "gradosAspecto": 122,
+      "puntosAspecto": 4
+    },
+    {
+      "gradosAspecto": 123,
+      "puntosAspecto": 3
+    },
+    {
+      "gradosAspecto": 124,
+      "puntosAspecto": 2
+    },
+    {
+      "gradosAspecto": 125,
+      "puntosAspecto": 1
+    },
+
+    {
+      "gradosAspecto": 235,
+      "puntosAspecto": 1
+    },
+    {
+      "gradosAspecto": 236,
+      "puntosAspecto": 2
+    },
+    {
+      "gradosAspecto": 237,
+      "puntosAspecto": 3
+    },
+    {
+      "gradosAspecto": 238,
+      "puntosAspecto": 4
+    },
+    {
+      "gradosAspecto": 239,
+      "puntosAspecto": 5
+    },
+    {
+      "gradosAspecto": 240,
+      "puntosAspecto": 6
+    },
+    {
+      "gradosAspecto": 241,
+      "puntosAspecto": 5
+    },
+    {
+      "gradosAspecto": 242,
+      "puntosAspecto": 4
+    },
+    {
+      "gradosAspecto": 243,
+      "puntosAspecto": 3
+    },
+    {
+      "gradosAspecto": 244,
+      "puntosAspecto": 2
+    },
+    {
+      "gradosAspecto": 245,
+      "puntosAspecto": 1
+    }
+  ],
+  "oposicion": [
+    {
+      "gradosAspecto": 174,
+      "puntosAspecto": 1
+    },
+    {
+      "gradosAspecto": 175,
+      "puntosAspecto": 2
+    },
+    {
+      "gradosAspecto": 176,
+      "puntosAspecto": 3
+    },
+    {
+      "gradosAspecto": 177,
+      "puntosAspecto": 4
+    },
+    {
+      "gradosAspecto": 178,
+      "puntosAspecto": 5
+    },
+    {
+      "gradosAspecto": 179,
+      "puntosAspecto": 6
+    },
+    {
+      "gradosAspecto": 180,
+      "puntosAspecto": 7
+    },
+    {
+      "gradosAspecto": 181,
+      "puntosAspecto": 6
+    },
+    {
+      "gradosAspecto": 182,
+      "puntosAspecto": 5
+    },
+    {
+      "gradosAspecto": 183,
+      "puntosAspecto": 4
+    },
+    {
+      "gradosAspecto": 184,
+      "puntosAspecto": 3
+    },
+    {
+      "gradosAspecto": 185,
+      "puntosAspecto": 2
+    },
+    {
+      "gradosAspecto": 186,
+      "puntosAspecto": 1
+    }
+  ]
+}

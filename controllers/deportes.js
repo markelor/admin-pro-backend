@@ -1,29 +1,29 @@
 const { response } = require("express");
 
-const Hospital = require("../models/hospital");
+const Deporte = require("../models/deporte");
 
-const getHospitales = async (req, res = response) => {
-  const hospitales = await Hospital.find().populate("usuario", "nombre img");
+const getDeportes = async (req, res = response) => {
+  const deportes = await Deporte.find().populate("usuario", "nombre img");
 
   res.json({
     ok: true,
-    hospitales,
+    deportes,
   });
 };
 
-const crearHospital = async (req, res = response) => {
+const crearDeporte = async (req, res = response) => {
   const uid = req.uid;
-  const hospital = new Hospital({
+  const deporte = new Deporte({
     usuario: uid,
     ...req.body,
   });
 
   try {
-    const hospitalDB = await hospital.save();
+    const deporteDB = await deporte.save();
 
     res.json({
       ok: true,
-      hospital: hospitalDB,
+      deporte: deporteDB,
     });
   } catch (error) {
     console.log(error);
@@ -34,34 +34,34 @@ const crearHospital = async (req, res = response) => {
   }
 };
 
-const actualizarHospital = async (req, res = response) => {
+const actualizarDeporte = async (req, res = response) => {
   const id = req.params.id;
   const uid = req.uid;
 
   try {
-    const hospital = await Hospital.findById(id);
+    const deporte = await Deporte.findById(id);
 
-    if (!hospital) {
+    if (!deporte) {
       return res.status(404).json({
         ok: true,
-        msg: "Hospital no encontrado por id",
+        msg: "Deporte no encontrado por id",
       });
     }
 
-    const cambiosHospital = {
+    const cambiosDeporte = {
       ...req.body,
       usuario: uid,
     };
 
-    const hospitalActualizado = await Hospital.findByIdAndUpdate(
+    const deporteActualizado = await Deporte.findByIdAndUpdate(
       id,
-      cambiosHospital,
+      cambiosDeporte,
       { new: true }
     );
 
     res.json({
       ok: true,
-      hospital: hospitalActualizado,
+      deporte: deporteActualizado,
     });
   } catch (error) {
     console.log(error);
@@ -73,24 +73,24 @@ const actualizarHospital = async (req, res = response) => {
   }
 };
 
-const borrarHospital = async (req, res = response) => {
+const borrarDeporte = async (req, res = response) => {
   const id = req.params.id;
 
   try {
-    const hospital = await Hospital.findById(id);
+    const deporte = await Deporte.findById(id);
 
-    if (!hospital) {
+    if (!deporte) {
       return res.status(404).json({
         ok: true,
-        msg: "Hospital no encontrado por id",
+        msg: "Deporte no encontrado por id",
       });
     }
 
-    await Hospital.findByIdAndDelete(id);
+    await Deporte.findByIdAndDelete(id);
 
     res.json({
       ok: true,
-      msg: "Hospital eliminado",
+      msg: "Deporte eliminado",
     });
   } catch (error) {
     console.log(error);
@@ -103,8 +103,8 @@ const borrarHospital = async (req, res = response) => {
 };
 
 module.exports = {
-  getHospitales,
-  crearHospital,
-  actualizarHospital,
-  borrarHospital,
+  getDeportes,
+  crearDeporte,
+  actualizarDeporte,
+  borrarDeporte,
 };

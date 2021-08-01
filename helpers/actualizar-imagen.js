@@ -1,8 +1,8 @@
 const Usuario = require('../models/usuario');
 const fs = require('fs');
 
-const Medico = require('../models/medico');
-const Hospital = require('../models/hospital');
+const Jugador = require('../models/jugador');
+const Deporte = require('../models/deporte');
 
 const borrarImagen = ( path ) => {
     if ( fs.existsSync( path ) ) {
@@ -17,34 +17,34 @@ const actualizarImagen = async(tipo, id, nombreArchivo) => {
     let pathViejo = '';
     
     switch( tipo ) {
-        case 'medicos':
-            const medico = await Medico.findById(id);
-            if ( !medico ) {
-                console.log('No es un médico por id');
+        case 'jugadores':
+            const jugador = await Jugador.findById(id);
+            if ( !jugador ) {
+                console.log('No es un jugador por id');
                 return false;
             }
 
-            pathViejo = `./uploads/medicos/${ medico.img }`;
+            pathViejo = `./uploads/jugadores/${ jugador.img }`;
             borrarImagen( pathViejo );
 
-            medico.img = nombreArchivo;
-            await medico.save();
+            jugador.img = nombreArchivo;
+            await jugador.save();
             return true;
 
         break;
         
-        case 'hospitales':
-            const hospital = await Hospital.findById(id);
-            if ( !hospital ) {
-                console.log('No es un hospital por id');
+        case 'deportes':
+            const deporte = await Deporte.findById(id);
+            if ( !deporte ) {
+                console.log('No es un deporte por id');
                 return false;
             }
 
-            pathViejo = `./uploads/hospitales/${ hospital.img }`;
+            pathViejo = `./uploads/deportes/${ deporte.img }`;
             borrarImagen( pathViejo );
 
-            hospital.img = nombreArchivo;
-            await hospital.save();
+            deporte.img = nombreArchivo;
+            await deporte.save();
             return true;
 
         break;
@@ -57,7 +57,7 @@ const actualizarImagen = async(tipo, id, nombreArchivo) => {
                 return false;
             }
 
-            pathViejo = `./uploads/hospitales/${ usuario.img }`;
+            pathViejo = `./uploads/deportes/${ usuario.img }`;
             borrarImagen( pathViejo );
 
             usuario.img = nombreArchivo;
