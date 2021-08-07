@@ -22,7 +22,7 @@ const getMenuFrontEnd = (role = 'USER_ROLE') => {
             { titulo: 'Deportes', url: 'deportes' },
             { titulo: 'Jugadores', url: 'jugadores' },
             { titulo: 'Partidos', url: 'partidos' },
-            { titulo: 'Aspectos', url: 'aspectos' },
+            { titulo: 'Relaciones planetarias', url: 'relaciones-planetarias' },
           ]
         },
       ];

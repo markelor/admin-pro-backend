@@ -86,13 +86,20 @@ const getJugadorById = async (req, res = response) => {
 };
 
 const crearJugador = async (req, res = response) => {
+  
   const uid = req.uid;
   const jugador = new Jugador({
     usuario: uid,
     ...req.body,
   });
-
   try {
+    const existeNombre = await Jugador.findOne({ nombre:jugador.nombre });
+    if (existeNombre) {
+      return res.status(400).json({
+        ok: false,
+        msg: "El jugador ya está registrado",
+      });
+    }
     const jugadorDB = await jugador.save();
 
     res.json({

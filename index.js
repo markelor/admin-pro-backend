@@ -32,7 +32,7 @@ app.use("/api/deportes", require("./routes/deportes"));
 app.use("/api/jugadores", require("./routes/jugadores"));
 app.use("/api/partidos", require("./routes/partidos"));
 app.use("/api/astrologia", require("./routes/astrologia"));
-app.use("/api/aspectos", require("./routes/aspectos"));
+app.use("/api/relaciones-planetarias", require("./routes/relaciones-planetarias"));
 app.use("/api/todo", require("./routes/busquedas"));
 app.use("/api/login", require("./routes/auth"));
 app.use("/api/upload", require("./routes/uploads"));

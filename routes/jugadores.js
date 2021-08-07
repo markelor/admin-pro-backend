@@ -36,6 +36,9 @@ router.post(
     check("fiabilidad", "La  fiabilidad de la carta es necesaria")
       .not()
       .isEmpty(),
+    check("comprobado", "La  comprobación de la carta es necesaria")
+      .not()
+      .isEmpty(),
     check("deporte", "El deporte id debe de ser válido").isMongoId(),
     validarCampos,
   ],

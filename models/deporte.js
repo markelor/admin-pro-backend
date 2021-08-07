@@ -3,7 +3,8 @@ const { Schema, model } = require('mongoose');
 const DeporteSchema = Schema({
     nombre: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     img: {
         type: String,

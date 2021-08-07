@@ -5,6 +5,7 @@ const JugadorSchema = Schema(
     nombre: {
       type: String,
       required: true,
+      unique: true
     },
     nacion: { type: String },
     ciudad: { type: String, required: true },

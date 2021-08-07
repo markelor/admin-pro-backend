@@ -10,10 +10,12 @@ const getCartaNatal = async (req, res) => {
   let signos = false;
   let casas = false;
   const aspectosCuadrante=true;
-  if (jugador.fiabilidad === "Exacto") {
+  /*if (jugador.fiabilidad === "Exacto") {
     signos = true;
     casas = true;
-  }
+  }*/
+  signos = true;
+  casas = true;
   const cartaNatal = await astrologia.obtenerCartaNatal(
     jugador,
     signos,
