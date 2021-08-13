@@ -1,6 +1,6 @@
 const { response } = require("express");
 
-const RelacionPlanetaria = require("../models/relacion-planetaria");
+const RelacionPlanetaria = require("../../models/configuraciones/relacion-planetaria");
 
 const getRelacionesPlanetarias = async (req, res = response) => {
   const relacionesPlanetarias = await RelacionPlanetaria.find().populate(
@@ -43,6 +43,13 @@ const crearRelacionPlanetaria = async (req, res = response) => {
   });
 
   try {
+    const existeNombre = await RelacionPlanetaria.findOne({ nombre:relacionPlanetaria.nombre });
+    if (existeNombre) {
+      return res.status(400).json({
+        ok: false,
+        msg: "La relación planetaria ya está registrado",
+      });
+    }
     const relacionPlanetariaDB = await relacionPlanetaria.save();
 
     res.json({

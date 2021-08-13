@@ -1,7 +1,7 @@
 const { response } = require("express");
 var request = require("request")
 
-const Partido = require("../models/partido");
+const Partido = require("../../models/mantenimientos/partido");
 
 const getPartidos = async (req, res = response) => {
   const partidos = await Partido.find()

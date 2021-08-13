@@ -1,8 +1,8 @@
-const Usuario = require('../models/usuario');
+const Usuario = require('../models/mantenimientos/usuario');
 const fs = require('fs');
 
-const Jugador = require('../models/jugador');
-const Deporte = require('../models/deporte');
+const Jugador = require('../models/mantenimientos/jugador');
+const Deporte = require('../models/mantenimientos/deporte');
 
 const borrarImagen = ( path ) => {
     if ( fs.existsSync( path ) ) {

@@ -4,11 +4,11 @@
 */
 const { Router } = require("express");
 const { check } = require("express-validator");
-const { validarCampos } = require("../middlewares/validar-campos");
+const { validarCampos } = require("../../middlewares/validar-campos");
 
-const { validarJWT } = require("../middlewares/validar-jwt");
+const { validarJWT } = require("../../middlewares/validar-jwt");
 
-const { getPartidos, crearPartidos } = require("../controllers/partidos");
+const { getPartidos, crearPartidos } = require("../../controllers/mantenimientos/partidos");
 
 const router = Router();
 

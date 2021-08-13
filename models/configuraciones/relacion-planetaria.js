@@ -41,7 +41,7 @@ const RelacionPlanetariaSchema = Schema(
       ref: "Usuario",
     },
   },
-  { collection: "relaciones-planetarias", timestamps: true }
+  { collection: "config-relaciones-planetarias", timestamps: true }
 );
 
 RelacionPlanetariaSchema.method("toJSON", function () {

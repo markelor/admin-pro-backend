@@ -1,8 +1,8 @@
 const { response } = require("express");
 const bcrypt = require("bcryptjs");
 
-const Usuario = require("../models/usuario");
-const { generarJWT } = require("../helpers/jwt");
+const Usuario = require("../../models/mantenimientos/usuario");
+const { generarJWT } = require("../../helpers/jwt");
 
 const getUsuarios = async (req, res) => {
   const desde = Number(req.query.desde) || 0;

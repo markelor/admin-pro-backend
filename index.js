@@ -8,7 +8,7 @@ const express = require("express");
 const cors = require("cors");
 const schedule = require("node-schedule");
 
-const Partido = require("./models/partido");
+const Partido = require("./models/mantenimientos/partido");
 const { dbConnection } = require("./database/config");
 
 // Crear el servidor de express
@@ -27,12 +27,15 @@ dbConnection();
 app.use(express.static("public"));
 
 // Rutas
-app.use("/api/usuarios", require("./routes/usuarios"));
-app.use("/api/deportes", require("./routes/deportes"));
-app.use("/api/jugadores", require("./routes/jugadores"));
-app.use("/api/partidos", require("./routes/partidos"));
+app.use("/api/usuarios", require("./routes/mantenimientos/usuarios"));
+app.use("/api/deportes", require("./routes/mantenimientos/deportes"));
+app.use("/api/jugadores", require("./routes/mantenimientos/jugadores"));
+app.use("/api/partidos", require("./routes/mantenimientos/partidos"));
+app.use("/api/cuerpos-celestes", require("./routes/mantenimientos/cuerpos-celestes"));
 app.use("/api/astrologia", require("./routes/astrologia"));
-app.use("/api/relaciones-planetarias", require("./routes/relaciones-planetarias"));
+
+app.use("/api/config-relaciones-planetarias", require("./routes/configuraciones/relaciones-planetarias"));
+app.use("/api/config-compatibilidades-planetarias", require("./routes/configuraciones/compatibilidades-planetarias"));
 app.use("/api/todo", require("./routes/busquedas"));
 app.use("/api/login", require("./routes/auth"));
 app.use("/api/upload", require("./routes/uploads"));

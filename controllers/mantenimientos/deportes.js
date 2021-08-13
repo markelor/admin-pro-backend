@@ -1,6 +1,6 @@
 const { response } = require("express");
 
-const Deporte = require("../models/deporte");
+const Deporte = require("../../models/mantenimientos/deporte");
 
 const getDeportes = async (req, res = response) => {
   const deportes = await Deporte.find().populate("usuario", "nombre img");

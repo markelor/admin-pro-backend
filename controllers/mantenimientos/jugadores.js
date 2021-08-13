@@ -1,8 +1,7 @@
 const { response } = require("express");
 
-const Jugador = require("../models/jugador");
-const partido = require("../models/partido");
-const Partido = require("../models/partido");
+const Jugador = require("../../models/mantenimientos/jugador");
+const Partido = require("../../models/mantenimientos/partido");
 const getJugadoresRegistrados = async (req, res = response) => {
   const jugadoresRegistrados = await Jugador.find()
     .populate("usuario", "nombre img")

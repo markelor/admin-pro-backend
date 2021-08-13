@@ -1,8 +1,8 @@
 const { response } = require("express");
 
-const Usuario = require("../models/usuario");
-const Jugador = require("../models/jugador");
-const Deporte = require("../models/deporte");
+const Usuario = require("../models/mantenimientos/usuario");
+const Jugador = require("../models/mantenimientos/jugador");
+const Deporte = require("../models/mantenimientos/deporte");
 
 const getTodo = async (req, res = response) => {
   const busqueda = req.params.busqueda;
