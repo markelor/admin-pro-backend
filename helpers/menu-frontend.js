@@ -5,10 +5,10 @@ const getMenuFrontEnd = (role = "USER_ROLE") => {
       icono: "mdi mdi-gauge",
       submenu: [
         { titulo: "Main", url: "/" },
-        { titulo: "Gráficas", url: "grafica1" },
-        { titulo: "rxjs", url: "rxjs" },
-        { titulo: "Promesas", url: "promesas" },
-        { titulo: "ProgressBar", url: "progress" },
+        { titulo: "Gráficas", url: "/dashboard/grafica1" },
+        { titulo: "rxjs", url: "/dashboard/rxjs" },
+        { titulo: "Promesas", url: "/dashboard/promesas" },
+        { titulo: "ProgressBar", url: "/dashboard/progress" },
       ],
     },
 
@@ -16,28 +16,28 @@ const getMenuFrontEnd = (role = "USER_ROLE") => {
       titulo: "Mantenimientos",
       icono: "mdi mdi-folder-lock-open",
       submenu: [
-        { titulo: "Deportes", url: "deportes" },
-        { titulo: "Jugadores", url: "jugadores" },
-        { titulo: "Partidos", url: "partidos" },
-        { titulo: "Cuerpos celestes", url: "cuerpos-celestes" },
+        { titulo: "Deportes", url: "/mantenimiento/deportes" },
+        { titulo: "Jugadores", url: "/mantenimiento/jugadores" },
+        { titulo: "Partidos", url: "/mantenimiento/partidos" },
+        { titulo: "Cuerpos celestes", url: "/mantenimiento/cuerpos-celestes" },
       ],
     },
     {
       titulo: "Configuraciones",
       icono: "mdi mdi-folder-lock-open",
       submenu: [
-        { titulo: "Relaciones planetarias", url: "relaciones-planetarias" },
+        { titulo: "Relaciones planetarias", url: "/configuracion/relaciones-planetarias" },
         {
           titulo: "Compatibilidades planetarias",
-          url: "compatibilidades-planetarias",
+          url: "/configuracion/compatibilidades-planetarias",
         },
-        { titulo: "Cuerpos celestes", url: "cuerpos-celestes" },
+        { titulo: "Cuerpos celestes", url: "/configuracion/cuerpos-celestes" },
       ],
     },
   ];
 
   if (role === "ADMIN_ROLE") {
-    menu[1].submenu.unshift({ titulo: "Usuarios", url: "usuarios" });
+    menu[1].submenu.unshift({ titulo: "Usuarios", url: "/mantenimiento/usuarios" });
   }
 
   return menu;

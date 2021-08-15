@@ -8,7 +8,7 @@ const CuerpoCelesteSchema = Schema(
       unique: true,
     },
     abreviatura: {
-      type: String,
+      type: Number,
       required: true,
     },
     usuario: {
