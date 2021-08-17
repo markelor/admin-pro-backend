@@ -31,7 +31,14 @@ const getMenuFrontEnd = (role = "USER_ROLE") => {
           titulo: "Compatibilidades planetarias",
           url: "/configuracion/compatibilidades-planetarias",
         },
-        { titulo: "Cuerpos celestes", url: "/configuracion/cuerpos-celestes" },
+        { titulo: "Cuerpos firmamento", url: "/configuracion/cuerpos-firmamento" },
+      ],
+    },
+    {
+      titulo: "Estrategias",
+      icono: "mdi mdi-folder-lock-open",
+      submenu: [
+        { titulo: "Estrategias", url: "/estrategia/estrategias" },
       ],
     },
   ];

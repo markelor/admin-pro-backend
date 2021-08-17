@@ -36,6 +36,7 @@ app.use("/api/astrologia", require("./routes/astrologia"));
 
 app.use("/api/config-relaciones-planetarias", require("./routes/configuraciones/relaciones-planetarias"));
 app.use("/api/config-compatibilidades-planetarias", require("./routes/configuraciones/compatibilidades-planetarias"));
+app.use("/api/config-cuerpos-firmamento", require("./routes/configuraciones/cuerpos-firmamento"));
 app.use("/api/todo", require("./routes/busquedas"));
 app.use("/api/login", require("./routes/auth"));
 app.use("/api/upload", require("./routes/uploads"));
