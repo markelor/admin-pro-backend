@@ -15,7 +15,7 @@ const CuerpoFirmamentoSchema = Schema(
 
     configCuerposCelestes: [
       {
-        cuerpoCelesteId: {
+        cuerpoCeleste: {
           required: true,
           type: Schema.Types.ObjectId,
           ref: "CuerpoCeleste",

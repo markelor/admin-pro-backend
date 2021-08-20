@@ -19,7 +19,7 @@ const getCuerpoFirmamentoById = async (req, res = response) => {
   try {
     const cuerpoFirmamento = await CuerpoFirmamento.findById(id)
       .populate("usuario", "nombre img")
-      .populate("deporte", "nombre img");
+      .populate("configCuerposCelestes.cuerpoCeleste");
 
     res.json({
       ok: true,

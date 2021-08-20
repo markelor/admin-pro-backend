@@ -11,15 +11,26 @@ const EstrategiaSchema = Schema(
       type: String,
       required: true,
     },
-    relacionPlanetaria: {
+    cuerposFirmamentoNatal: {
       required: true,
       type: Schema.Types.ObjectId,
-      ref: "RelacionPlanetaria",
+      ref: "CuerpoFirmamento",
     },
+    cuerposFirmamentoTransitos: {
+      required: true,
+      type: Schema.Types.ObjectId,
+      ref: "CuerpoFirmamento",
+    },
+
     compatibilidadPlanetaria: {
       required: true,
       type: Schema.Types.ObjectId,
       ref: "CompatibilidadPlanetaria",
+    },
+    relacionPlanetaria: {
+      required: true,
+      type: Schema.Types.ObjectId,
+      ref: "RelacionPlanetaria",
     },
     usuario: {
       required: true,
@@ -27,7 +38,7 @@ const EstrategiaSchema = Schema(
       ref: "Usuario",
     }
   },
-  {  timestamps: true }
+  { collection: "config-estrategias", timestamps: true }
 );
 
 EstrategiaSchema.method("toJSON", function () {

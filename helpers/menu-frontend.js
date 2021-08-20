@@ -16,35 +16,36 @@ const getMenuFrontEnd = (role = "USER_ROLE") => {
       titulo: "Mantenimientos",
       icono: "mdi mdi-folder-lock-open",
       submenu: [
-        { titulo: "Deportes", url: "/mantenimiento/deportes" },
-        { titulo: "Jugadores", url: "/mantenimiento/jugadores" },
-        { titulo: "Partidos", url: "/mantenimiento/partidos" },
-        { titulo: "Cuerpos celestes", url: "/mantenimiento/cuerpos-celestes" },
+        { titulo: "Deportes", url: "/mantenimientos/deportes" },
+        { titulo: "Jugadores", url: "/mantenimientos/jugadores" },
+        { titulo: "Partidos", url: "/mantenimientos/partidos" },
+        { titulo: "Cuerpos celestes", url: "/mantenimientos/cuerpos-celestes" },
       ],
     },
     {
       titulo: "Configuraciones",
       icono: "mdi mdi-folder-lock-open",
       submenu: [
-        { titulo: "Relaciones planetarias", url: "/configuracion/relaciones-planetarias" },
+        { titulo: "Relaciones planetarias", url: "/configuraciones/relaciones-planetarias" },
         {
           titulo: "Compatibilidades planetarias",
-          url: "/configuracion/compatibilidades-planetarias",
+          url: "/configuraciones/compatibilidades-planetarias",
         },
-        { titulo: "Cuerpos firmamento", url: "/configuracion/cuerpos-firmamento" },
+        { titulo: "Cuerpos firmamento", url: "/configuraciones/cuerpos-firmamento" },
+        { titulo: "Estrategias", url: "/configuraciones/estrategias" },
       ],
     },
     {
       titulo: "Estrategias",
       icono: "mdi mdi-folder-lock-open",
       submenu: [
-        { titulo: "Estrategias", url: "/estrategia/estrategias" },
+       
       ],
     },
   ];
 
   if (role === "ADMIN_ROLE") {
-    menu[1].submenu.unshift({ titulo: "Usuarios", url: "/mantenimiento/usuarios" });
+    menu[1].submenu.unshift({ titulo: "Usuarios", url: "/mantenimientos/usuarios" });
   }
 
   return menu;

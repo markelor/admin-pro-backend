@@ -26,7 +26,7 @@ router.post( '/',
         validarJWT,
         check('nombre','El nombre del cuerpo firmamento es necesario').not().isEmpty(),
         check('descripcion','La descripción del cuerpo firmamento es necesario').not().isEmpty(),
-        check('configCuerposCelestes.*.cuerpoCelesteId','El id de cuerpo celeste es necesario').not().isEmpty(),
+        check('configCuerposCelestes.*.cuerpoCeleste','El cuerpo celeste es necesario').not().isEmpty(),
         validarCampos
     ], 
     crearCuerpoFirmamento 
@@ -37,7 +37,7 @@ router.put( '/:id',
         validarJWT,
         check('nombre','El nombre del cuerpo firmamento es necesario').not().isEmpty(),
         check('descripcion','La descripción del cuerpo firmamento es necesario').not().isEmpty(),
-        check('configCuerposCelestes.*.cuerpoCelesteId','El id de cuerpo celeste es necesario').not().isEmpty(),
+        check('configCuerposCelestes.*.cuerpoCeleste','El cuerpo celeste es necesario').not().isEmpty(),
         validarCampos
     ],
     actualizarCuerpoFirmamento
