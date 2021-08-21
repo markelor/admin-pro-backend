@@ -1,6 +1,6 @@
 /*
     Historico partido
-    ruta: '/api/estrategia'
+    ruta: '/api/historico-partido'
 */
 const { Router } = require('express');
 const { check } = require('express-validator');
@@ -9,17 +9,17 @@ const { validarCampos } = require('../../middlewares/validar-campos');
 const { validarJWT } = require('../../middlewares/validar-jwt');
 
 const {
-    getEstrategias,
-    crearEstrategia,
-    actualizarEstrategia,
-    borrarEstrategia,
-    getEstrategiaById
-} = require('../../controllers/configuraciones/estrategias')
+    getHistoricoPartidos,
+    crearHistoricoPartido,
+    actualizarHistoricoPartido,
+    borrarHistoricoPartido,
+    getHistoricoPartidoById
+} = require('../../controllers/estrategias/historico-partidos')
 
 
 const router = Router();
 
-router.get( '/', validarJWT, getEstrategias );
+router.get( '/', validarJWT, getHistoricoPartidos );
 
 router.post( '/',
     [
@@ -32,7 +32,7 @@ router.post( '/',
         check('relacionPlanetaria','La relacion planetaria es necesaria').not().isEmpty(),
         validarCampos
     ], 
-    crearEstrategia 
+    crearHistoricoPartido 
 );
 
 router.put( '/:id',
@@ -46,17 +46,17 @@ router.put( '/:id',
         check('relacionPlanetaria','La relacion planetaria es necesaria').not().isEmpty(),
         validarCampos
     ],
-    actualizarEstrategia
+    actualizarHistoricoPartido
 );
 
 router.delete( '/:id',
     validarJWT,
-    borrarEstrategia
+    borrarHistoricoPartido
 );
 
 router.get( '/:id',
     validarJWT,
-    getEstrategiaById
+    getHistoricoPartidoById
 );
 
 

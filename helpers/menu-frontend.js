@@ -32,14 +32,14 @@ const getMenuFrontEnd = (role = "USER_ROLE") => {
           url: "/configuraciones/compatibilidades-planetarias",
         },
         { titulo: "Cuerpos firmamento", url: "/configuraciones/cuerpos-firmamento" },
-        { titulo: "Estrategias", url: "/configuraciones/estrategias" },
+        { titulo: "Estrategias", url: "/configuraciones/estrategias" }
       ],
     },
     {
       titulo: "Estrategias",
       icono: "mdi mdi-folder-lock-open",
       submenu: [
-       
+        { titulo: "Historico Partidos", url: "/estrategias/historico-partidos" },
       ],
     },
   ];

@@ -26,18 +26,21 @@ dbConnection();
 // Directorio público
 app.use(express.static("public"));
 
-// Rutas
+// Rutas mantenimientos
 app.use("/api/usuarios", require("./routes/mantenimientos/usuarios"));
 app.use("/api/deportes", require("./routes/mantenimientos/deportes"));
 app.use("/api/jugadores", require("./routes/mantenimientos/jugadores"));
 app.use("/api/partidos", require("./routes/mantenimientos/partidos"));
 app.use("/api/cuerpos-celestes", require("./routes/mantenimientos/cuerpos-celestes"));
-app.use("/api/astrologia", require("./routes/astrologia"));
-
+// Rutas configuraciones
 app.use("/api/config-relaciones-planetarias", require("./routes/configuraciones/relaciones-planetarias"));
 app.use("/api/config-compatibilidades-planetarias", require("./routes/configuraciones/compatibilidades-planetarias"));
 app.use("/api/config-cuerpos-firmamento", require("./routes/configuraciones/cuerpos-firmamento"));
 app.use("/api/config-estrategias", require("./routes/configuraciones/estrategias"));
+// Rutas estrategias
+app.use("/api/historico-partidos", require("./routes/estrategias/historico-partidos"));
+// Rutas dashboard
+app.use("/api/astrologia", require("./routes/astrologia"));
 app.use("/api/todo", require("./routes/busquedas"));
 app.use("/api/login", require("./routes/auth"));
 app.use("/api/upload", require("./routes/uploads"));

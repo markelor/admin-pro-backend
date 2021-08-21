@@ -5,7 +5,24 @@ const Estrategia = require("../../models/configuraciones/estrategia");
 const getEstrategias = async (req, res = response) => {
   const estrategias = await Estrategia.find()
     .populate("usuario", "nombre img")
-    .populate("deporte", "nombre img");
+    .populate({
+      path: "cuerposFirmamentoNatal",
+      model: "CuerpoFirmamento",
+      populate: {
+        path: "configCuerposCelestes.cuerpoCeleste",
+        model: "CuerpoCeleste",
+      },
+    })
+    .populate({
+      path: "cuerposFirmamentoTransitos",
+      model: "CuerpoFirmamento",
+      populate: {
+        path: "configCuerposCelestes.cuerpoCeleste",
+        model: "CuerpoCeleste",
+      },
+    })
+    .populate("compatibilidadPlanetaria")
+    .populate("relacionPlanetaria");
 
   res.json({
     ok: true,
@@ -17,27 +34,10 @@ const getEstrategiaById = async (req, res = response) => {
   const id = req.params.id;
 
   try {
-    const estrategia = await Estrategia.findById(id)
-      .populate("usuario", "nombre img")
-      /*.populate({
-        path: "cuerposFirmamentoNatal",
-        model: "CuerpoFirmamento",
-        populate: {
-          path: 'configCuerposCelestes.cuerpoCeleste',
-          model: 'CuerpoCeleste'
-        }
-      })
-      .populate({
-        path: "cuerposFirmamentoTransitos",
-        model: "CuerpoFirmamento",
-        populate: {
-          path: 'configCuerposCelestes.cuerpoCeleste',
-          model: 'CuerpoCeleste'
-        }
-      })
-      .populate("compatibilidadPlanetaria")
-      .populate("relacionPlanetaria");*/
-
+    const estrategia = await Estrategia.findById(id).populate(
+      "usuario",
+      "nombre img"
+    );
     res.json({
       ok: true,
       estrategia,
