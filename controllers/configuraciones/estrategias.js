@@ -21,8 +21,8 @@ const getEstrategias = async (req, res = response) => {
         model: "CuerpoCeleste",
       },
     })
-    .populate("compatibilidadPlanetaria")
-    .populate("relacionPlanetaria");
+    .populate("compatibilidadesPlanetarias")
+    .populate("relacionesPlanetarias");
 
   res.json({
     ok: true,

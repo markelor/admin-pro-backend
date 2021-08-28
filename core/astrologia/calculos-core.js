@@ -3,10 +3,11 @@ const ficheroSignos = require("./datos-json/signos.json");
 const ficheroAspectos = require("./datos-json/aspectos.json");
 const ficheroDignidadesPlanetarias = require("./datos-json/dignidades.json");
 const ficheroCompatibilidad = require("./datos-json/compatibilidad.json");
-const Signos=require("./model/signos.model").Signos;
-const DignidadesPlanetarias=require("./model/dignidades-planetarias.model").DignidadesPlanetarias;
-const Aspectos=require("./model/aspectos.model").Aspectos;
-const Compatibilidad=require("./model/compatibilidad.model").Compatibilidad;
+const Signos = require("./model/signos.model").Signos;
+const DignidadesPlanetarias =
+  require("./model/dignidades-planetarias.model").DignidadesPlanetarias;
+const Aspectos = require("./model/aspectos.model").Aspectos;
+const Compatibilidad = require("./model/compatibilidad.model").Compatibilidad;
 var flag = swisseph.SEFLG_SPEED | swisseph.SEFLG_MOSEPH;
 
 // path to ephemeris data
@@ -17,20 +18,18 @@ swisseph.swe_set_ephe_path(__dirname + "/../ephe");
  * @returns Promesa dia juliano
  */
 const calcularDiaJuliano = (fechaArray) => {
-  return (
-    new Promise((resolve) => {
-      swisseph.swe_julday(
-        fechaArray.ano,
-        fechaArray.mes,
-        fechaArray.dia,
-        fechaArray.hora,
-        swisseph.SE_GREG_CAL,
-        (julday_ut) => {
-          resolve(julday_ut);
-        }
-      );
-    })
-  );
+  return new Promise((resolve) => {
+    swisseph.swe_julday(
+      fechaArray.ano,
+      fechaArray.mes,
+      fechaArray.dia,
+      fechaArray.hora,
+      swisseph.SE_GREG_CAL,
+      (julday_ut) => {
+        resolve(julday_ut);
+      }
+    );
+  });
 };
 /**
  * Función que calcula la posición de cada planeta en un signo por tiempo
@@ -118,58 +117,55 @@ const calcularPuntosDignidadesPlanetarias = (planeta, opcion) => {
  * @returns promesa
  */
 const calcularPlanetaEnCasa = (diaJuliano, planeta, latitud, longitud) => {
-  return (
-    new Promise
-    ((resolve) => {
-      swisseph.swe_houses(
-        diaJuliano,
-        latitud,
-        longitud,
-        "P",
-        (swissephInfoCasas) => {
-          // Calcular AS,MC,DC,BC
-          switch (planeta.nombre) {
-            case "Ascendente":
-              planeta.grados = swissephInfoCasas.house[0];
-              break;
-            case "MedioCielo":
-              planeta.grados = swissephInfoCasas.house[9];
-              break;
-            case "Descendente":
-              planeta.grados = swissephInfoCasas.house[6];
-              break;
-            case "BajoCielo":
-              planeta.grados = swissephInfoCasas.house[3];
-              break;
-            default:
-              break;
-          }
-          swissephInfoCasas.house.push(swissephInfoCasas.house[0]);
-          for (
-            let index = 0;
-            index < swissephInfoCasas.house.length - 1;
-            index++
-          ) {
-            if (
-              (planeta.grados > swissephInfoCasas.house[index] &&
-                planeta.grados < swissephInfoCasas.house[index + 1]) ||
-              (Math.sign(
-                swissephInfoCasas.house[index] -
-                  swissephInfoCasas.house[index + 1]
-              ) > 0 &&
-                planeta.grados > swissephInfoCasas.house[index] &&
-                planeta.grados > swissephInfoCasas.house[index + 1])
-            ) {
-              planeta.casa.numero = index + 1;
-            }
-          }
-          //obtener dignidades planetarias
-          calcularPuntosDignidadesPlanetarias(planeta, "casa");
-          resolve(planeta);
+  return new Promise((resolve) => {
+    swisseph.swe_houses(
+      diaJuliano,
+      latitud,
+      longitud,
+      "P",
+      (swissephInfoCasas) => {
+        // Calcular AS,MC,DC,BC
+        switch (planeta.nombre) {
+          case "Ascendente":
+            planeta.grados = swissephInfoCasas.house[0];
+            break;
+          case "MedioCielo":
+            planeta.grados = swissephInfoCasas.house[9];
+            break;
+          case "Descendente":
+            planeta.grados = swissephInfoCasas.house[6];
+            break;
+          case "BajoCielo":
+            planeta.grados = swissephInfoCasas.house[3];
+            break;
+          default:
+            break;
         }
-      );
-    })
-  );
+        swissephInfoCasas.house.push(swissephInfoCasas.house[0]);
+        for (
+          let index = 0;
+          index < swissephInfoCasas.house.length - 1;
+          index++
+        ) {
+          if (
+            (planeta.grados > swissephInfoCasas.house[index] &&
+              planeta.grados < swissephInfoCasas.house[index + 1]) ||
+            (Math.sign(
+              swissephInfoCasas.house[index] -
+                swissephInfoCasas.house[index + 1]
+            ) > 0 &&
+              planeta.grados > swissephInfoCasas.house[index] &&
+              planeta.grados > swissephInfoCasas.house[index + 1])
+          ) {
+            planeta.casa.numero = index + 1;
+          }
+        }
+        //obtener dignidades planetarias
+        calcularPuntosDignidadesPlanetarias(planeta, "casa");
+        resolve(planeta);
+      }
+    );
+  });
 };
 /**
  * Funcion para obtener información sobre cada planeta
@@ -179,14 +175,11 @@ const calcularPlanetaEnCasa = (diaJuliano, planeta, latitud, longitud) => {
  */
 
 const obtenerInfoPlaneta = (diaJuliano, planeta) => {
-  return (
-    new Promise
-    ((resolve) => {
-      swisseph.swe_calc_ut(diaJuliano, planeta.abreviatura, flag, (body) => {
-        resolve(body);
-      });
-    })
-  );
+  return new Promise((resolve) => {
+    swisseph.swe_calc_ut(diaJuliano, planeta.abreviatura, flag, (body) => {
+      resolve(body);
+    });
+  });
 };
 
 /**
@@ -196,114 +189,117 @@ const obtenerInfoPlaneta = (diaJuliano, planeta) => {
  * @returns relaciones planetarias
  */
 const calcularAspectosPlanetarios = (
+  estrategia,
   natal,
   posicionPlanetasMapa1,
   posicionPlanetasMapa2,
   aspectosCuadrante
 ) => {
-  //clonar planetas
-  //posicionPlanetasMapa1= JSON.parse(JSON.stringify(posicionPlanetasMapa1));
-  //posicionPlanetasMapa2= JSON.parse(JSON.stringify(posicionPlanetasMapa2));
+
   let relacionesPlanetarias = {
-    aspectos: {
-      conjuncion: [],
-      sextil: [],
-      cuadratura: [],
-      trigono: [],
-      oposicion: [],
-    },
+    aspectos:[],
     totalPuntosAspectos: 0,
     totalPuntosCompatibilidad: 0,
   };
 
-  //Eliminar Ascendente, MedioCielo, Descendente, BajoCielo
-  if (!aspectosCuadrante) {
-    for (let index = 0; index < 4; index++) {
-      posicionPlanetasMapa1.shift();
-      posicionPlanetasMapa2.shift();
-    }
-  }
 
   let totalPuntosAspectos = 0;
   let totalPuntosCompatibilidad = 0;
+  const configAspectos = estrategia.relacionesPlanetarias.configAspectos;
   posicionPlanetasMapa1.forEach((planetaMapa1) => {
+
     posicionPlanetasMapa2.forEach((planetaMapa2) => {
       const gradosAspecto = Math.round(
-        Math.abs(planetaMapa1.grados - planetaMapa2.grados)
+        Math.abs(
+          planetaMapa1.cuerpoCeleste.grados - planetaMapa2.cuerpoCeleste.grados
+        )
       );
-      //clonar aspectos
-      const tablaAspectos = new Aspectos().deserializar(ficheroAspectos);
-      Object.keys(tablaAspectos.aspectos).forEach((key) => {
-        tablaAspectos.aspectos[key].forEach((aspecto) => {
-          //Aspecto valido encontrado
-          if (
-            gradosAspecto === aspecto.gradosAspecto &&
-            (Number(planetaMapa1.abreviatura) ||
-              Number(planetaMapa2.abreviatura))
+      configAspectos.forEach((configAspecto) => {
+        configAspecto.grados.forEach((grado) => {
+          //orbe grados
+          for (
+            let index = grado.grado - configAspecto.orbe;
+            index < grado.grado + configAspecto.orbe + 1;
+            index++
           ) {
-            //Calcular compatibilidad
-            let compatibilidad;
-            const tablaCompatibilidad = new Compatibilidad().deserializar(
-              ficheroCompatibilidad
-            );
-            tablaCompatibilidad.compatibilidad[
-              planetaMapa1.nombre.charAt(0).toLowerCase() +
-                planetaMapa1.nombre.substring(1)
-            ].forEach((compatibilidadPlanetas) => {
-              if (compatibilidadPlanetas.nombre === planetaMapa2.nombre) {
-                compatibilidad = compatibilidadPlanetas;
-                if (compatibilidad.armonia === "Negativo") {
-                  compatibilidad.puntos = -Math.abs(compatibilidad.puntos);
+
+            if (gradosAspecto === ((index % 360) + 360) % 360) {
+      
+              let armonia;
+              let puntosAspecto;
+              const configArmonias =
+                estrategia.compatibilidadesPlanetarias.configArmonias;
+              configArmonias.forEach((configArmonia) => {
+
+                if (
+                  configArmonia.cuerpoCeleste1 === planetaMapa1.cuerpoCeleste.nombre &&
+                  configArmonia.cuerpoCeleste2 === planetaMapa2.cuerpoCeleste.nombre
+                ) {
+                  armonia=configArmonia;
+                  if (configArmonia.armonia === "Negativo") {
+                    armonia.puntos = -Math.abs(configArmonia.puntos);
+                  }
+                }
+              });
+
+              //Calcular puntos por grado aspecto
+              puntosAspecto = Math.abs(
+                configAspecto.puntosPorGrado*
+                (configAspecto.orbe-( Math.abs(grado.grado-gradosAspecto)))+1
+              );
+              if (
+                configAspecto.aspecto === "Cuadratura" ||
+                configAspecto.aspecto === "Oposicion"
+              ) {
+
+                puntosAspecto = -Math.abs( configAspecto.puntosPorGrado*
+                  (configAspecto.orbe-( Math.abs(grado.grado-gradosAspecto)))+1
+                );
+              } else if (configAspecto.aspecto === "Conjuncion") {
+                if (
+                  armonia.puntos< 0
+                ) {
+                  puntosAspecto = -Math.abs( configAspecto.puntosPorGrado*
+                    (configAspecto.orbe-( Math.abs(index)))+1
+                  );
+                } else if (
+                    armonia.puntos === 0
+                ) {
+                  puntosAspecto = 0;
+                }else{
+                  puntosAspecto = Math.abs(
+                    configAspecto.puntosPorGrado*
+                    (configAspecto.orbe-( Math.abs(index)))+1
+                  );
+
                 }
               }
-            });
-            //Calcular puntos aspecto
-            if (key === "cuadratura" || key === "oposicion") {
-              aspecto.puntosAspecto = -Math.abs(aspecto.puntosAspecto);
-            } else if (key === "conjuncion") {
-              if (
-                planetaMapa1.signo.puntos +
-                  planetaMapa2.signo.puntos +
-                  planetaMapa1.casa.puntos +
-                  planetaMapa2.casa.puntos +
-                  compatibilidad.puntos <
-                0
-              ) {
-                aspecto.puntosAspecto = -Math.abs(aspecto.puntosAspecto);
-              } else if (
-                planetaMapa1.signo.puntos +
-                  planetaMapa2.signo.puntos +
-                  planetaMapa1.casa.puntos +
-                  planetaMapa2.casa.puntos +
-                  compatibilidad.puntos ===
-                0
-              ) {
-                aspecto.puntosAspecto = 0;
-              }
-            }
-            const infoAspecto = {
-              gradosAspecto: aspecto.gradosAspecto,
-              planetaMapa1: planetaMapa1.nombre,
-              planetaMapa2: planetaMapa2.nombre,
-              puntosAspecto: aspecto.puntosAspecto,
-              puntosCompatibilidad: compatibilidad.puntos,
-            };
+              const infoAspecto = {
+                aspecto:configAspecto.aspecto,
+                gradosAspecto: gradosAspecto,
+                planetaMapa1: planetaMapa1.cuerpoCeleste.nombre,
+                planetaMapa2: planetaMapa2.cuerpoCeleste.nombre,
+                puntosAspecto: puntosAspecto,
+                puntosCompatibilidad: armonia.puntos,
+              };
 
-            if (natal && planetaMapa1.nombre === planetaMapa2.nombre) {
-              //No añadir planeta
-            } else {
-              //Quitar repetidas para natal
-              const repeticion = relacionesPlanetarias.aspectos[key].find(
-                (relacionPlanetaria) =>
-                  relacionPlanetaria.planetaMapa2 === planetaMapa1.nombre &&
-                  relacionPlanetaria.planetaMapa1 === planetaMapa2.nombre
-              );
-              if (!repeticion) {
-                totalPuntosAspectos =
-                  totalPuntosAspectos + infoAspecto.puntosAspecto;
-                totalPuntosCompatibilidad =
-                  totalPuntosCompatibilidad + infoAspecto.puntosCompatibilidad;
-                relacionesPlanetarias.aspectos[key].push(infoAspecto);
+              if (natal && planetaMapa1.cuerpoCeleste.nombre === planetaMapa2.cuerpoCeleste.nombre) {
+                //No añadir planeta
+              } else {
+                //Quitar repetidas para natal
+                const repeticion = relacionesPlanetarias.aspectos.find(
+                  (relacionPlanetaria) =>
+                    relacionPlanetaria.planetaMapa2 === planetaMapa1.cuerpoCeleste.nombre  &&
+                    relacionPlanetaria.planetaMapa1 === planetaMapa2.cuerpoCeleste.nombre 
+                );
+                if (!repeticion) {
+                  totalPuntosAspectos =
+                    totalPuntosAspectos + infoAspecto.puntosAspecto;
+                  totalPuntosCompatibilidad =
+                    totalPuntosCompatibilidad +
+                    infoAspecto.puntosCompatibilidad;
+                  relacionesPlanetarias.aspectos.push(infoAspecto);
+                }
               }
             }
           }

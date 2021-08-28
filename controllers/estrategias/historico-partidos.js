@@ -1,11 +1,72 @@
 const { response } = require("express");
 
-const HistoricoPartido = require("../../models/mantenimientos/partido");
-
+const Partido = require("../../models/mantenimientos/partido");
+const astrologia = require("../../core/astrologia/calculos-astrologicos");
 const getHistoricoPartidos = async (req, res = response) => {
-  const historicoPartidos = await HistoricoPartido.find()
-    .populate("usuario", "nombre img")
-    .populate("deporte", "nombre img");
+  const consultaHistoricoPartidos = await Partido.aggregate([
+    {
+      $lookup: {
+        from: "jugadores",
+        localField: "jugador1",
+        foreignField: "nombre",
+        as: "jugador1",
+      },
+    },
+    {
+      $match: {
+        jugador1: { $ne: [] },
+      },
+    },
+    {
+      $lookup: {
+        from: "jugadores",
+        localField: "jugador2",
+        foreignField: "nombre",
+        as: "jugador2",
+      },
+    },
+    {
+      $match: {
+        jugador2: { $ne: [] },
+      },
+    },
+    {
+      $project: {
+        categoria: 1,
+        circuito: 1,
+        createdAt: 1,
+        deporte: 1,
+        horaInicio: 1,
+        modalidad: 1,
+        resultado: 1,
+        jugador1: {
+          $reduce: {
+            input: "$jugador1",
+            initialValue: {},
+            in: { $mergeObjects: ["$$value", "$$this"] },
+          },
+        },
+        jugador2: {
+          $reduce: {
+            input: "$jugador2",
+            initialValue: {},
+            in: { $mergeObjects: ["$$value", "$$this"] },
+          },
+        },
+      },
+    },
+  ]);
+  const estrategia = req.body;
+  const signos = false;
+  const casas = false;
+  const aspectosCuadrante = req.body.aspectosCuadrante;
+  const historicoPartidos = await astrologia.obtenerHistoricoPartidos(
+    estrategia,
+    consultaHistoricoPartidos,
+    signos,
+    casas,
+    aspectosCuadrante
+  );
 
   res.json({
     ok: true,
@@ -17,26 +78,10 @@ const getHistoricoPartidoById = async (req, res = response) => {
   const id = req.params.id;
 
   try {
-    const historicoPartido = await HistoricoPartido.findById(id)
-      .populate("usuario", "nombre img")
-      /*.populate({
-        path: "cuerposFirmamentoNatal",
-        model: "CuerpoFirmamento",
-        populate: {
-          path: 'configCuerposCelestes.cuerpoCeleste',
-          model: 'CuerpoCeleste'
-        }
-      })
-      .populate({
-        path: "cuerposFirmamentoTransitos",
-        model: "CuerpoFirmamento",
-        populate: {
-          path: 'configCuerposCelestes.cuerpoCeleste',
-          model: 'CuerpoCeleste'
-        }
-      })
-      .populate("compatibilidadPlanetaria")
-      .populate("relacionPlanetaria");*/
+    const historicoPartido = await Partido.findById(id).populate(
+      "usuario",
+      "nombre img"
+    );
 
     res.json({
       ok: true,
@@ -59,7 +104,7 @@ const crearHistoricoPartido = async (req, res = response) => {
   });
 
   try {
-    const existeNombre = await HistoricoPartido.findOne({
+    const existeNombre = await Partido.findOne({
       nombre: historicoPartido.nombre,
     });
     if (existeNombre) {
@@ -88,7 +133,7 @@ const actualizarHistoricoPartido = async (req, res = response) => {
   const uid = req.uid;
 
   try {
-    const historicoPartido = await HistoricoPartido.findById(id);
+    const historicoPartido = await Partido.findById(id);
 
     if (!historicoPartido) {
       return res.status(404).json({
@@ -102,7 +147,7 @@ const actualizarHistoricoPartido = async (req, res = response) => {
       usuario: uid,
     };
 
-    const historicoPartidoActualizado = await HistoricoPartido.findByIdAndUpdate(
+    const historicoPartidoActualizado = await Partido.findByIdAndUpdate(
       id,
       cambiosHistoricoPartido,
       { new: true }
@@ -126,7 +171,7 @@ const borrarHistoricoPartido = async (req, res = response) => {
   const id = req.params.id;
 
   try {
-    const historicoPartido = await HistoricoPartido.findById(id);
+    const historicoPartido = await Partido.findById(id);
 
     if (!historicoPartido) {
       return res.status(404).json({
@@ -135,7 +180,7 @@ const borrarHistoricoPartido = async (req, res = response) => {
       });
     }
 
-    await HistoricoPartido.findByIdAndDelete(id);
+    await Partido.findByIdAndDelete(id);
 
     res.json({
       ok: true,

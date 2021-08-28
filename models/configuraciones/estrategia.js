@@ -22,12 +22,12 @@ const EstrategiaSchema = Schema(
       ref: "CuerpoFirmamento",
     },
 
-    compatibilidadPlanetaria: {
+    compatibilidadesPlanetarias: {
       required: true,
       type: Schema.Types.ObjectId,
       ref: "CompatibilidadPlanetaria",
     },
-    relacionPlanetaria: {
+    relacionesPlanetarias: {
       required: true,
       type: Schema.Types.ObjectId,
       ref: "RelacionPlanetaria",
