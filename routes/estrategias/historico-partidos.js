@@ -10,68 +10,26 @@ const { validarJWT } = require("../../middlewares/validar-jwt");
 
 const {
   getHistoricoPartidos,
-  crearHistoricoPartido,
-  actualizarHistoricoPartido,
-  borrarHistoricoPartido,
-  getHistoricoPartidoById,
+  getAprenderCompatibilidades,
 } = require("../../controllers/estrategias/historico-partidos");
 
 const router = Router();
 //router.get( '/', validarJWT, getHistoricoPartidos );
 router.post("/", validarJWT, getHistoricoPartidos);
-
-/*router.post( '/',
+router.put( "/aprender-compatibilidades/:id",
     [
         validarJWT,
-        check('nombre','El nombre de la compatibilidad planetaria es necesaria').not().isEmpty(),
-        check('descripcion','La descripción de la compatibilidad planetaria es necesaria').not().isEmpty(),
-        check('cuerposFirmamentoNatal','El cuerpos firmamento natal es necesario').not().isEmpty(),
-        check('cuerposFirmamentoTransitos','El  cuerpos firmamento transitos es necesario').not().isEmpty(),
-        check('compatibilidadPlanetaria','La compatibilidad planetaria es necesaria').not().isEmpty(),
-        check('relacionPlanetaria','La relacion planetaria es necesaria').not().isEmpty(),
+        /*check('compatibilidadesPlanetarias.*.nombre','El nombre de la compatibilidad planetaria es necesaria').not().isEmpty(),
+        check('compatibilidadesPlanetarias.*.descripcion','La descripción de la compatibilidad planetaria es necesaria').not().isEmpty(),
+        check('compatibilidadesPlanetarias.*.configArmonias.*.armonia','La armonia es necesaria').not().isEmpty(),
+        check('compatibilidadesPlanetarias.*.configArmonias.*.cuerpoCeleste1','El cuerpo celeste1 es necesario').not().isEmpty(),
+        check('compatibilidadesPlanetarias.*.configArmonias.*.cuerpoCeleste2','El cuerpo celeste 2 es necesario').not().isEmpty(),
+        check('compatibilidadesPlanetarias.*.configArmonias.*.puntos','Los puntos son necesarios').not().isEmpty(),*/
         validarCampos
-    ], 
-    crearHistoricoPartido 
-);*/
-
-router.put(
-  "/:id",
-  [
-    validarJWT,
-    check("nombre", "El nombre de la compatibilidad planetaria es necesaria")
-      .not()
-      .isEmpty(),
-    check(
-      "descripcion",
-      "La descripción de la compatibilidad planetaria es necesaria"
-    )
-      .not()
-      .isEmpty(),
-    check("cuerposFirmamentoNatal", "El cuerpos firmamento natal es necesario")
-      .not()
-      .isEmpty(),
-    check(
-      "cuerposFirmamentoTransitos",
-      "El  cuerpos firmamento transitos es necesario"
-    )
-      .not()
-      .isEmpty(),
-    check(
-      "compatibilidadPlanetaria",
-      "La compatibilidad planetaria es necesaria"
-    )
-      .not()
-      .isEmpty(),
-    check("relacionPlanetaria", "La relacion planetaria es necesaria")
-      .not()
-      .isEmpty(),
-    validarCampos,
-  ],
-  actualizarHistoricoPartido
+    ],
+    
+    getAprenderCompatibilidades
 );
 
-router.delete("/:id", validarJWT, borrarHistoricoPartido);
-
-router.get("/:id", validarJWT, getHistoricoPartidoById);
 
 module.exports = router;

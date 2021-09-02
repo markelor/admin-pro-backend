@@ -199,7 +199,7 @@ const calcularAspectosPlanetarios = (
   let relacionesPlanetarias = {
     aspectos:[],
     totalPuntosAspectos: 0,
-    totalPuntosCompatibilidad: 0,
+    totalPuntosCompatibilidad: 0
   };
 
 

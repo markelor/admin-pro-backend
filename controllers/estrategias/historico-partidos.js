@@ -1,9 +1,10 @@
 const { response } = require("express");
 
 const Partido = require("../../models/mantenimientos/partido");
+const CompatibilidadPlanetaria = require("../../models/configuraciones/compatibilidad-planetaria");
 const astrologia = require("../../core/astrologia/calculos-astrologicos");
-const getHistoricoPartidos = async (req, res = response) => {
-  const consultaHistoricoPartidos = await Partido.aggregate([
+const consultaHistoricoPartidos = () => {
+  return Partido.aggregate([
     {
       $lookup: {
         from: "jugadores",
@@ -55,14 +56,17 @@ const getHistoricoPartidos = async (req, res = response) => {
         },
       },
     },
-  ]);
+  ]).exec();
+};
+const getHistoricoPartidos = async (req, res = response) => {
+  const resultadoHistoricoPartidos = await consultaHistoricoPartidos();
   const estrategia = req.body;
   const signos = false;
   const casas = false;
   const aspectosCuadrante = req.body.aspectosCuadrante;
   const historicoPartidos = await astrologia.obtenerHistoricoPartidos(
     estrategia,
-    consultaHistoricoPartidos,
+    resultadoHistoricoPartidos,
     signos,
     casas,
     aspectosCuadrante
@@ -73,122 +77,216 @@ const getHistoricoPartidos = async (req, res = response) => {
     historicoPartidos,
   });
 };
+const getAprenderCompatibilidades = async (req, res = response) => {
+  const resultadoHistoricoPartidos = await consultaHistoricoPartidos();
+  let estrategia = req.body;
+  const signos = false;
+  const casas = false;
+  const aspectosCuadrante = req.body.aspectosCuadrante;
+  let aciertoGuardado = 0;
+  let falloGuardado = 0;
+  let empateGuardado = 0;
+  let estrategiaGuardado=JSON.parse(JSON.stringify(estrategia));
+  for (let j= 0; j < estrategia.compatibilidadesPlanetarias
+    .configArmonias.length; j++) {
+  
+    for (let index = -4; index < 5; index++) {
+      let armoniaGuardado;
 
-const getHistoricoPartidoById = async (req, res = response) => {
-  const id = req.params.id;
+      /* console.log(historicoPartidos);
+      console.log("ccccccccc");*/
 
-  try {
-    const historicoPartido = await Partido.findById(id).populate(
-      "usuario",
-      "nombre img"
-    );
+      if (index > 0) {
+        armoniaGuardado = "Positivo";
+      } else if (index < 0) {
+        armoniaGuardado = "Negativo";
+      } else {
+        armoniaGuardado = "Neutro";
+      }
+      const arrayAcierto = [];
+      const arrayFallo = [];
+      let acierto = 0;
+      let fallo = 0;
+      let empate = 0;
+      estrategia.compatibilidadesPlanetarias
+    .configArmonias[j].armonia = armoniaGuardado;
+    estrategia.compatibilidadesPlanetarias
+    .configArmonias[j].puntos = Math.abs(index);
 
-    res.json({
-      ok: true,
-      historicoPartido,
-    });
-  } catch (error) {
-    console.log(error);
-    res.json({
-      ok: true,
-      msg: "Hable con el administrador",
-    });
-  }
-};
+      const historicoPartidos = await astrologia.obtenerHistoricoPartidos(
+        estrategia,
+        resultadoHistoricoPartidos,
+        signos,
+        casas,
+        aspectosCuadrante
+      );
 
-const crearHistoricoPartido = async (req, res = response) => {
-  const uid = req.uid;
-  const historicoPartido = new HistoricoPartido({
-    usuario: uid,
-    ...req.body,
-  });
+      for (const historicoPartido of historicoPartidos.historicoPartidos) {
+        const jugador1Puntos =
+          historicoPartido.jugador1Natal.relacionesPlanetarias
+            .totalPuntosAspectos +
+          historicoPartido.jugador1Natal.relacionesPlanetarias
+            .totalPuntosCompatibilidad +
+          historicoPartido.jugador1Transitos.relacionesPlanetarias
+            .totalPuntosAspectos +
+          historicoPartido.jugador1Transitos.relacionesPlanetarias
+            .totalPuntosCompatibilidad;
+        const jugador2Puntos =
+          historicoPartido.jugador2Natal.relacionesPlanetarias
+            .totalPuntosAspectos +
+          historicoPartido.jugador2Natal.relacionesPlanetarias
+            .totalPuntosCompatibilidad +
+          historicoPartido.jugador2Transitos.relacionesPlanetarias
+            .totalPuntosAspectos +
+          historicoPartido.jugador2Transitos.relacionesPlanetarias
+            .totalPuntosCompatibilidad;
+        historicoPartido.partido.jugador1Puntos = jugador1Puntos;
+        historicoPartido.partido.jugador2Puntos = jugador2Puntos;
+        if (
+          jugador1Puntos > jugador2Puntos &&
+          historicoPartido.partido.ganador ===
+            historicoPartido.partido.jugador1.nombre &&
+          Math.abs(jugador1Puntos - jugador2Puntos) > 80
+        ) {
+          arrayAcierto.push(historicoPartido);
+          acierto++;
+        } else if (
+          jugador1Puntos < jugador2Puntos &&
+          historicoPartido.partido.ganador ===
+            historicoPartido.partido.jugador2.nombre &&
+          Math.abs(jugador2Puntos - jugador1Puntos) > 80
+        ) {
+          arrayAcierto.push(historicoPartido);
+          acierto++;
+        } else if (
+          jugador1Puntos > jugador2Puntos &&
+          historicoPartido.partido.ganador ===
+            historicoPartido.partido.jugador2.nombre &&
+          Math.abs(jugador1Puntos - jugador2Puntos) > 80
+        ) {
+          arrayFallo.push(historicoPartido);
+          fallo++;
+        } else if (
+          jugador1Puntos < jugador2Puntos &&
+          historicoPartido.partido.ganador ===
+            historicoPartido.partido.jugador1.nombre &&
+          Math.abs(jugador2Puntos - jugador1Puntos) > 80
+        ) {
+          arrayFallo.push(historicoPartido);
+          fallo++;
+        } else {
+          empate++;
+        }
+        /* console.log('---------------------------------------');
+            console.log(acierto);
+            console.log('++++++++++++++++++++++++++++++++++++++++');*/
+      }
+      if (
+        (!aciertoGuardado && !falloGuardado) ||
+        (acierto * 100) / (acierto + fallo) >
+          (aciertoGuardado * 100) / (aciertoGuardado + falloGuardado)
+      ) {
+        aciertoGuardado = acierto;
+        falloGuardado = fallo;
+        empateGuardado = empate;
+        estrategiaGuardado.compatibilidadesPlanetarias.configArmonias[j].puntos = Math.abs(index);
+        estrategiaGuardado.compatibilidadesPlanetarias.configArmonias[j].armonia = armoniaGuardado;
+        console.log("----------------------------------");
+        console.log("acierto", aciertoGuardado),
+          console.log("fallo", falloGuardado);
 
-  try {
-    const existeNombre = await Partido.findOne({
-      nombre: historicoPartido.nombre,
-    });
-    if (existeNombre) {
-      return res.status(400).json({
-        ok: false,
-        msg: "La compatibilidad planetaria ya está registrada",
-      });
+        /*console.log("empate", empateGuardado);
+        console.log(estrategia.compatibilidadesPlanetarias.configArmonias);*/
+      }
+
+      //console.log(estrategia.compatibilidadesPlanetarias.configArmonias);
     }
-    const historicoPartidoDB = await historicoPartido.save();
-
-    res.json({
-      ok: true,
-      historicoPartido: historicoPartidoDB,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({
-      ok: false,
-      msg: "Hable con el administrador",
-    });
+    estrategia =JSON.parse(JSON.stringify(estrategiaGuardado));
   }
-};
 
-const actualizarHistoricoPartido = async (req, res = response) => {
+  //arrayAcierto.forEach((element, index) => {*/
+  /* console.log('*************************************ACIERTO*********************************')
+    console.log('-------NATAL JUGADOR1------'+index);
+    console.log(element.jugador1Natal.relacionesPlanetarias);
+    console.log('-------TRANSITOS JUGADOR1------'+index);
+    console.log(element.jugador1Transitos.relacionesPlanetarias);
+    console.log('-------JUGADOR1 PUNTOS------'+index)
+    console.log(element.partido.jugador1Puntos);
+    console.log('-------NATAL JUGADOR2------'+index);
+    console.log(element.jugador2Natal.relacionesPlanetarias);
+    console.log('-------TRANSITOS JUGADOR2------'+index);
+    console.log(element.jugador2Transitos.relacionesPlanetarias);
+    console.log('-------JUGADOR2 PUNTOS------'+index)
+    console.log(element.partido.jugador2Puntos);
+    console.log('-------JUGADOR1------'+index)
+    console.log(element.partido.jugador1.nombre);
+    console.log('-------JUGADOR2------'+index)
+    console.log(element.partido.jugador2.nombre);
+    console.log('-------RESULTADO------'+index)
+    console.log(element.partido.resultado);
+    console.log('-------GANADOR------'+index)
+    console.log(element.partido.ganador);*/
+  /*  });
+        arrayFallo.forEach((element, index) => {
+          /* console.log('*************************************FALLO*********************************')
+    console.log('-------NATAL JUGADOR1------'+index);
+    console.log(element.jugador1Natal.relacionesPlanetarias);
+    console.log('-------TRANSITOS JUGADOR1------'+index);
+    console.log(element.jugador1Transitos.relacionesPlanetarias);
+    console.log('-------JUGADOR1 PUNTOS------'+index)
+    console.log(element.partido.jugador1Puntos);
+    console.log('-------NATAL JUGADOR2------'+index);
+    console.log(element.jugador2Natal.relacionesPlanetarias);
+    console.log('-------TRANSITOS JUGADOR2------'+index);
+    console.log(element.jugador2Transitos.relacionesPlanetarias);
+    console.log('-------JUGADOR2 PUNTOS------'+index)
+    console.log(element.partido.jugador2Puntos);
+    console.log('-------JUGADOR1------'+index)
+    console.log(element.partido.jugador1.nombre);
+    console.log('-------JUGADOR2------'+index)
+    console.log(element.partido.jugador2.nombre);
+    console.log('-------RESULTADO------'+index)
+    console.log(element.partido.resultado);
+    console.log('-------GANADOR------'+index)
+    console.log(element.partido.ganador);*/
+  /*    });
+
+        this.cargando = false;
+        this.historicoPartidos = historicoPartidos;
+      });
+  }
+}*/
+ 
   const id = req.params.id;
   const uid = req.uid;
-
   try {
-    const historicoPartido = await Partido.findById(id);
+    const compatibilidadPlanetaria = await CompatibilidadPlanetaria.findById(id);
 
-    if (!historicoPartido) {
+    if (!compatibilidadPlanetaria) {
       return res.status(404).json({
         ok: true,
         msg: "Compatibilidad planetaria no encontrada por id",
       });
     }
 
-    const cambiosHistoricoPartido = {
-      ...req.body,
+    const cambiosCompatibilidadPlanetaria = {
+      ...estrategiaGuardado.compatibilidadesPlanetarias,
       usuario: uid,
     };
 
-    const historicoPartidoActualizado = await Partido.findByIdAndUpdate(
+    const compatibilidadPlanetariaActualizado = await CompatibilidadPlanetaria.findByIdAndUpdate(
       id,
-      cambiosHistoricoPartido,
+      cambiosCompatibilidadPlanetaria,
       { new: true }
     );
+    console.log('FIN');
 
     res.json({
       ok: true,
-      historicoPartido: historicoPartidoActualizado,
+      compatibilidadesPlanetarias: compatibilidadPlanetariaActualizado,
     });
   } catch (error) {
     console.log(error);
-
-    res.status(500).json({
-      ok: false,
-      msg: "Hable con el administrador",
-    });
-  }
-};
-
-const borrarHistoricoPartido = async (req, res = response) => {
-  const id = req.params.id;
-
-  try {
-    const historicoPartido = await Partido.findById(id);
-
-    if (!historicoPartido) {
-      return res.status(404).json({
-        ok: true,
-        msg: "Compatibilidad planetaria no encontrado por id",
-      });
-    }
-
-    await Partido.findByIdAndDelete(id);
-
-    res.json({
-      ok: true,
-      msg: "Compatibilidad planetaria borrada",
-    });
-  } catch (error) {
-    console.log(error);
-
     res.status(500).json({
       ok: false,
       msg: "Hable con el administrador",
@@ -198,8 +296,5 @@ const borrarHistoricoPartido = async (req, res = response) => {
 
 module.exports = {
   getHistoricoPartidos,
-  crearHistoricoPartido,
-  actualizarHistoricoPartido,
-  borrarHistoricoPartido,
-  getHistoricoPartidoById,
+  getAprenderCompatibilidades,
 };

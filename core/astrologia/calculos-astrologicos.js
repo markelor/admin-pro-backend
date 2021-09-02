@@ -41,7 +41,6 @@ const obtenerInfoPlanetas = async (
     fechaPlaneta = fechaCasa;
   }
 
-
   let totalPuntosSignos = 0;
   let totalPuntosCasas = 0;
   for (const configCuerpoCeleste of configCuerposCelestes) {
@@ -85,7 +84,13 @@ const obtenerInfoPlanetas = async (
  *Función que obtiene la carta natal del jugador
  * @param jugador
  */
-const obtenerCartaNatal = async (estrategia,jugador, signos, casas, aspectosCuadrante) => {
+const obtenerCartaNatal = async (
+  estrategia,
+  jugador,
+  signos,
+  casas,
+  aspectosCuadrante
+) => {
   const fechaNatalJugador = jugador.fechaNacimiento.split("-");
   const horaNatal = Number(jugador.tiempoUniversal.split(":")[0]);
   const minutoNatal = Number(jugador.tiempoUniversal.split(":")[1]);
@@ -154,7 +159,7 @@ const obtenerCartaTransitos = async (
     dia: Number(fechaNatalJugador[2]),
     hora: horaNatal + minutoNatal / 60,
   };
-  
+
   const posicionPlanetasPartido = await obtenerInfoPlanetas(
     estrategia,
     jugador.latitud,
@@ -175,7 +180,7 @@ const obtenerCartaTransitos = async (
       aspectosCuadrante
     );
   return {
-    planetasNatal: posicionPlanetasPartido,
+    planetasPartido: posicionPlanetasPartido,
     relacionesPlanetarias: aspectosPlanetariosNatalVSaspectosPlanetariosPartido,
   };
 };
@@ -194,7 +199,19 @@ const obtenerHistoricoPartidos = async (
 
   //Obtener partidas del jugador
 
-  for (const partido of partidos) { 
+  for (const partido of partidos) {
+    if (
+      Number(partido.resultado.split(":")[0]) >
+      Number(partido.resultado.split(":")[1])
+    ) {
+      partido.ganador = partido.jugador1.nombre;
+    } else if (
+      Number(partido.resultado.split(":")[0]) <
+      Number(partido.resultado.split(":")[1])
+    ) {
+      partido.ganador = partido.jugador2.nombre;
+    }
+
     jugador1Natal = await obtenerCartaNatal(
       estrategia,
       partido.jugador1,
@@ -202,11 +219,11 @@ const obtenerHistoricoPartidos = async (
       casas,
       aspectosCuadrante
     );
-    
+
     //transito jugador 1
     jugador1Transitos = await obtenerCartaTransitos(
       estrategia,
-     jugador1Natal.planetasNatal,
+      jugador1Natal.planetasNatal,
       partido.jugador1,
       partido.createdAt,
       partido.horaInicio,
@@ -238,12 +255,12 @@ const obtenerHistoricoPartidos = async (
       jugador1Natal,
       jugador1Transitos,
       jugador2Natal,
-      jugador2Transitos,
+      jugador2Transitos
     });
-  };
+  }
 
   return {
-  historicoPartidos
+    historicoPartidos,
   };
 };
 module.exports = {

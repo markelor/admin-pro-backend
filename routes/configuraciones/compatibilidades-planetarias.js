@@ -26,11 +26,12 @@ router.post( '/',
         validarJWT,
         check('nombre','El nombre de la compatibilidad planetaria es necesaria').not().isEmpty(),
         check('descripcion','La descripción de la compatibilidad planetaria es necesaria').not().isEmpty(),
-        check('configAspectos.*.aspecto','El aspecto es necesario').not().isEmpty(),
-        check('configAspectos.*.grados.*.grado','El grado del aspecto es necesario').not().isEmpty(),
-        check('configAspectos.*.orbe','El orbe es necesaria').not().isEmpty(),
-        check('configAspectos.*.puntosPorGrado','Los puntos por grado son necesarios').not().isEmpty(),
+        check('configArmonias.*.armonia','La armonia es necesaria').not().isEmpty(),
+        check('configArmonias.*.cuerpoCeleste1','El cuerpo celeste1 es necesario').not().isEmpty(),
+        check('configArmonias.*.cuerpoCeleste2','El cuerpo celeste 2 es necesario').not().isEmpty(),
+        check('configArmonias.*.puntos','Los puntos son necesarios').not().isEmpty(),
         validarCampos
+        
     ], 
     crearCompatibilidadPlanetaria 
 );
@@ -40,10 +41,10 @@ router.put( '/:id',
         validarJWT,
         check('nombre','El nombre de la compatibilidad planetaria es necesaria').not().isEmpty(),
         check('descripcion','La descripción de la compatibilidad planetaria es necesaria').not().isEmpty(),
-        check('configAspectos.*.aspecto','El aspecto es necesario').not().isEmpty(),
-        check('configAspectos.*.grados.*.grado','El grado del aspecto es necesario').not().isEmpty(),
-        check('configAspectos.*.orbe','El orbe es necesaria').not().isEmpty(),
-        check('configAspectos.*.puntosPorGrado','Los puntos por grado son necesarios').not().isEmpty(),
+        check('configArmonias.*.armonia','La armonia es necesaria').not().isEmpty(),
+        check('configArmonias.*.cuerpoCeleste1','El cuerpo celeste1 es necesario').not().isEmpty(),
+        check('configArmonias.*.cuerpoCeleste2','El cuerpo celeste 2 es necesario').not().isEmpty(),
+        check('configArmonias.*.puntos','Los puntos son necesarios').not().isEmpty(),
         validarCampos
     ],
     actualizarCompatibilidadPlanetaria
