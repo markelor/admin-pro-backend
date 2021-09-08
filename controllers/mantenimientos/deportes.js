@@ -1,14 +1,21 @@
 const { response } = require("express");
 
 const Deporte = require("../../models/mantenimientos/deporte");
-
+const deportesQuerys = require("../../querys/mantenimientos/deportes");
 const getDeportes = async (req, res = response) => {
-  const deportes = await Deporte.find().populate("usuario", "nombre img");
-
-  res.json({
-    ok: true,
-    deportes,
-  });
+  try {
+    const deportes=await deportesQuerys.getDeportesQuery();
+    res.json({
+      ok: true,
+      deportes,
+    });
+  } catch (error) {
+    console.log(error);
+    res.json({
+      ok: false,
+      msg: "Hable con el administrador",
+    });
+  }
 };
 
 const crearDeporte = async (req, res = response) => {
@@ -19,8 +26,17 @@ const crearDeporte = async (req, res = response) => {
   });
 
   try {
-    const deporteDB = await deporte.save();
-
+    const existeNombre =
+      await deportesQuerys.getDeportePorNombreQuery(
+        deporte.nombre
+      );
+    if (existeNombre) {
+      return res.status(400).json({
+        ok: false,
+        msg: "El deporte ya está registrado",
+      });
+    }
+    const deporteDB =await deportesQuerys.guardarDeporteQuery(deporte);
     res.json({
       ok: true,
       deporte: deporteDB,
@@ -39,8 +55,7 @@ const actualizarDeporte = async (req, res = response) => {
   const uid = req.uid;
 
   try {
-    const deporte = await Deporte.findById(id);
-
+    const deporte = await deportesQuerys.getDeportePorIdQuery(id);
     if (!deporte) {
       return res.status(404).json({
         ok: true,
@@ -53,11 +68,7 @@ const actualizarDeporte = async (req, res = response) => {
       usuario: uid,
     };
 
-    const deporteActualizado = await Deporte.findByIdAndUpdate(
-      id,
-      cambiosDeporte,
-      { new: true }
-    );
+    const deporteActualizado =await deportesQuerys.actualizarDeportePorIdQuery(id,cambiosDeporte)
 
     res.json({
       ok: true,
@@ -77,7 +88,7 @@ const borrarDeporte = async (req, res = response) => {
   const id = req.params.id;
 
   try {
-    const deporte = await Deporte.findById(id);
+   const deporte = await deportesQuerys.getDeportePorIdQuery(id);
 
     if (!deporte) {
       return res.status(404).json({
@@ -86,7 +97,7 @@ const borrarDeporte = async (req, res = response) => {
       });
     }
 
-    await Deporte.findByIdAndDelete(id);
+    await await deportesQuerys.borrarDeportePorIdQuery(id);
 
     res.json({
       ok: true,

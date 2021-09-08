@@ -1,26 +1,32 @@
 const { response } = require("express");
 
 const CompatibilidadPlanetaria = require("../../models/configuraciones/compatibilidad-planetaria");
+const compatibilidadesPlanetariasQuerys = require("../../querys/configuraciones/compatibilidades-planetarias");
 
 const getCompatibilidadesPlanetarias = async (req, res = response) => {
-  const compatibilidadesPlanetarias = await CompatibilidadPlanetaria.find()
-    .populate("usuario", "nombre img")
-    .populate("deporte", "nombre img");
-
-  res.json({
-    ok: true,
-    compatibilidadesPlanetarias,
-  });
+  try {
+    const compatibilidadesPlanetarias =
+      await compatibilidadesPlanetariasQuerys.getCompatibilidadesPlanetariasQuery();
+    res.json({
+      ok: true,
+      compatibilidadesPlanetarias,
+    });
+  } catch (error) {
+    console.log(error);
+    res.json({
+      ok: false,
+      msg: "Hable con el administrador",
+    });
+  }
 };
 
 const getCompatibilidadPlanetariaById = async (req, res = response) => {
   const id = req.params.id;
-
   try {
-    const compatibilidadPlanetaria = await CompatibilidadPlanetaria.findById(id)
-      .populate("usuario", "nombre img")
-      .populate("deporte", "nombre img");
-
+    const compatibilidadPlanetaria =
+      await compatibilidadesPlanetariasQuerys.getCompatibilidadPlanetariaPorIdQuery(
+        id
+      );
     res.json({
       ok: true,
       compatibilidadPlanetaria,
@@ -42,15 +48,18 @@ const crearCompatibilidadPlanetaria = async (req, res = response) => {
   });
 
   try {
-    const existeNombre = await CompatibilidadPlanetaria.findOne({ nombre:compatibilidadPlanetaria.nombre });
+    const existeNombre =
+      await compatibilidadesPlanetariasQuerys.getCompatibilidadPlanetariaPorNombreQuery(
+        compatibilidadPlanetaria.nombre
+      );
     if (existeNombre) {
       return res.status(400).json({
         ok: false,
         msg: "La compatibilidad planetaria ya está registrada",
       });
     }
-    const compatibilidadPlanetariaDB = await compatibilidadPlanetaria.save();
-
+    const compatibilidadPlanetariaDB =
+      await compatibilidadesPlanetariasQuerys.guardarCompatibilidadPlanetariaQuery(compatibilidadPlanetaria);
     res.json({
       ok: true,
       compatibilidadPlanetaria: compatibilidadPlanetariaDB,
@@ -69,7 +78,10 @@ const actualizarCompatibilidadPlanetaria = async (req, res = response) => {
   const uid = req.uid;
 
   try {
-    const compatibilidadPlanetaria = await CompatibilidadPlanetaria.findById(id);
+    const compatibilidadPlanetaria =
+      await compatibilidadesPlanetariasQuerys.getCompatibilidadPlanetariaPorIdQuery(
+        id
+      );
 
     if (!compatibilidadPlanetaria) {
       return res.status(404).json({
@@ -82,13 +94,11 @@ const actualizarCompatibilidadPlanetaria = async (req, res = response) => {
       ...req.body,
       usuario: uid,
     };
-
-    const compatibilidadPlanetariaActualizado = await CompatibilidadPlanetaria.findByIdAndUpdate(
-      id,
-      cambiosCompatibilidadPlanetaria,
-      { new: true }
-    );
-
+    const compatibilidadPlanetariaActualizado =
+      await compatibilidadesPlanetariasQuerys.actualizarCompatibilidadPlanetariaPorIdQuery(
+        id,
+        cambiosCompatibilidadPlanetaria
+      );
     res.json({
       ok: true,
       compatibilidadPlanetaria: compatibilidadPlanetariaActualizado,
@@ -107,7 +117,9 @@ const borrarCompatibilidadPlanetaria = async (req, res = response) => {
   const id = req.params.id;
 
   try {
-    const compatibilidadPlanetaria = await CompatibilidadPlanetaria.findById(id);
+    const compatibilidadPlanetaria = await compatibilidadesPlanetariasQuerys.getCompatibilidadPlanetariaPorIdQuery(
+      id
+    );
 
     if (!compatibilidadPlanetaria) {
       return res.status(404).json({
@@ -115,9 +127,9 @@ const borrarCompatibilidadPlanetaria = async (req, res = response) => {
         msg: "Compatibilidad planetaria no encontrado por id",
       });
     }
-
-    await CompatibilidadPlanetaria.findByIdAndDelete(id);
-
+    await compatibilidadesPlanetariasQuerys.borrarCompatibilidadPlanetariaPorIdQuery(
+      id
+    );
     res.json({
       ok: true,
       msg: "Compatibilidad planetaria borrada",

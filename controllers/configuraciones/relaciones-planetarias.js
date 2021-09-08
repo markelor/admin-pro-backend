@@ -1,26 +1,30 @@
 const { response } = require("express");
 
 const RelacionPlanetaria = require("../../models/configuraciones/relacion-planetaria");
-
+const relacionesPlanetariasQuerys = require("../../querys/configuraciones/relaciones-planetarias");
 const getRelacionesPlanetarias = async (req, res = response) => {
-  const relacionesPlanetarias = await RelacionPlanetaria.find().populate(
-    "usuario",
-    "nombre img"
-  );
-  res.json({
-    ok: true,
-    relacionesPlanetarias,
-  });
+  try {
+    const relacionesPlanetarias =
+      await relacionesPlanetariasQuerys.getRelacionesPlanetariasQuery();
+    res.json({
+      ok: true,
+      relacionesPlanetarias,
+    });
+  } catch (error) {
+    console.log(error);
+    res.json({
+      ok: false,
+      msg: "Hable con el administrador",
+    });
+  }
 };
 
 const getRelacionPlanetariaById = async (req, res = response) => {
   const id = req.params.id;
 
   try {
-    const relacionPlanetaria = await RelacionPlanetaria.findById(id).populate(
-      "usuario",
-      "nombre img"
-    );
+    const relacionPlanetaria =
+      await relacionesPlanetariasQuerys.getRelacionPlanetariaPorIdQuery(id);
 
     res.json({
       ok: true,
@@ -43,15 +47,20 @@ const crearRelacionPlanetaria = async (req, res = response) => {
   });
 
   try {
-    const existeNombre = await RelacionPlanetaria.findOne({ nombre:relacionPlanetaria.nombre });
+    const existeNombre =
+      await relacionesPlanetariasQuerys.getRelacionPlanetariaPorNombreQuery(
+        relacionPlanetaria.nombre
+      );
     if (existeNombre) {
       return res.status(400).json({
         ok: false,
         msg: "La relación planetaria ya está registrado",
       });
     }
-    const relacionPlanetariaDB = await relacionPlanetaria.save();
-
+    const relacionPlanetariaDB =
+      await relacionesPlanetariasQuerys.guardarRelacionPlanetariaQuery(
+        relacionPlanetaria
+      );
     res.json({
       ok: true,
       relacionPlanetaria: relacionPlanetariaDB,
@@ -70,7 +79,8 @@ const actualizarRelacionPlanetaria = async (req, res = response) => {
   const uid = req.uid;
 
   try {
-    const relacionPlanetaria = await RelacionPlanetaria.findById(id);
+    const relacionPlanetaria =
+      await relacionesPlanetariasQuerys.getRelacionPlanetariaPorIdQuery(id);
 
     if (!relacionPlanetaria) {
       return res.status(404).json({
@@ -85,10 +95,9 @@ const actualizarRelacionPlanetaria = async (req, res = response) => {
     };
 
     const relacionPlanetariaActualizado =
-      await RelacionPlanetaria.findByIdAndUpdate(
+      await relacionesPlanetariasQuerys.actualizarRelacionPlanetariaPorIdQuery(
         id,
-        cambiosRelacionPlanetaria,
-        { new: true }
+        cambiosRelacionPlanetaria
       );
 
     res.json({
@@ -109,7 +118,8 @@ const borrarRelacionPlanetaria = async (req, res = response) => {
   const id = req.params.id;
 
   try {
-    const relacionPlanetaria = await RelacionPlanetaria.findById(id);
+    const relacionPlanetaria =
+      await relacionesPlanetariasQuerys.getRelacionPlanetariaPorIdQuery(id);
 
     if (!relacionPlanetaria) {
       return res.status(404).json({
@@ -117,9 +127,7 @@ const borrarRelacionPlanetaria = async (req, res = response) => {
         msg: "Relacion planetaria no encontrado por id",
       });
     }
-
-    await RelacionPlanetaria.findByIdAndDelete(id);
-
+    await relacionesPlanetariasQuerys.borrarRelacionPlanetariaPorIdQuery(id);
     res.json({
       ok: true,
       msg: "Relacion planetaria borrada",

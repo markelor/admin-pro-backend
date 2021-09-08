@@ -1,26 +1,28 @@
 const { response } = require("express");
-
+const cuerposFirmamentoQuerys = require("../../querys/configuraciones/cuerpos-firmamento");
 const CuerpoFirmamento = require("../../models/configuraciones/cuerpo-firmamento");
-
 const getCuerposFirmamento = async (req, res = response) => {
-  const cuerposFirmamento = await CuerpoFirmamento.find()
-    .populate("usuario", "nombre img")
-    .populate("deporte", "nombre img");
-
-  res.json({
-    ok: true,
-    cuerposFirmamento
-  });
+  try {
+    const cuerposFirmamento =
+      await cuerposFirmamentoQuerys.getCuerposFirmamentoQuery();
+    res.json({
+      ok: true,
+      cuerposFirmamento,
+    });
+  } catch (error) {
+    console.log(error);
+    res.json({
+      ok: false,
+      msg: "Hable con el administrador",
+    });
+  }
 };
 
 const getCuerpoFirmamentoById = async (req, res = response) => {
   const id = req.params.id;
 
   try {
-    const cuerpoFirmamento = await CuerpoFirmamento.findById(id)
-      .populate("usuario", "nombre img")
-      .populate("configCuerposCelestes.cuerpoCeleste");
-
+    const cuerpoFirmamento = await cuerposFirmamentoQuerys.getCuerpoFirmamentoPorIdQuery(id);
     res.json({
       ok: true,
       cuerpoFirmamento,
@@ -42,14 +44,14 @@ const crearCuerpoFirmamento = async (req, res = response) => {
   });
 
   try {
-    const existeNombre = await CuerpoFirmamento.findOne({ nombre:cuerpoFirmamento.nombre });
+    const existeNombre = await cuerposFirmamentoQuerys.getCuerpoFirmamentoPorNombreQuery(cuerpoFirmamento.nombre);
     if (existeNombre) {
       return res.status(400).json({
         ok: false,
         msg: "El cuerpo firmamento ya está registrado",
       });
     }
-    const cuerpoFirmamentoDB = await cuerpoFirmamento.save();
+    const cuerpoFirmamentoDB = await cuerposFirmamentoQuerys.guardarCuerpoFirmamentoQuery(cuerpoFirmamento);
 
     res.json({
       ok: true,
@@ -69,7 +71,7 @@ const actualizarCuerpoFirmamento = async (req, res = response) => {
   const uid = req.uid;
 
   try {
-    const cuerpoFirmamento = await CuerpoFirmamento.findById(id);
+    const cuerpoFirmamento = await cuerposFirmamentoQuerys.getCuerpoFirmamentoPorIdQuery(id);
 
     if (!cuerpoFirmamento) {
       return res.status(404).json({
@@ -83,11 +85,7 @@ const actualizarCuerpoFirmamento = async (req, res = response) => {
       usuario: uid,
     };
 
-    const cuerpoFirmamentoActualizado = await CuerpoFirmamento.findByIdAndUpdate(
-      id,
-      cambiosCuerpoFirmamento,
-      { new: true }
-    );
+    const cuerpoFirmamentoActualizado = await cuerposFirmamentoQuerys.actualizarCuerpoFirmamentoPorIdQuery(id,cambiosCuerpoFirmamento)
 
     res.json({
       ok: true,
@@ -107,7 +105,7 @@ const borrarCuerpoFirmamento = async (req, res = response) => {
   const id = req.params.id;
 
   try {
-    const cuerpoFirmamento = await CuerpoFirmamento.findById(id);
+    const cuerpoFirmamento = await cuerposFirmamentoQuerys.getCuerpoFirmamentoPorIdQuery(id);
 
     if (!cuerpoFirmamento) {
       return res.status(404).json({
@@ -115,8 +113,7 @@ const borrarCuerpoFirmamento = async (req, res = response) => {
         msg: "Cuerpo firmamento no encontrado por id",
       });
     }
-
-    await CuerpoFirmamento.findByIdAndDelete(id);
+    await cuerposFirmamentoQuerys.borrarCuerpoFirmamentoPorIdQuery(id);
 
     res.json({
       ok: true,
