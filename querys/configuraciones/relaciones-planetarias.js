@@ -22,9 +22,9 @@ const getRelacionPlanetariaPorNombreQuery = async (nombre) => {
 };
 
 const guardarRelacionPlanetariaQuery = async (
-  RelacionPlanetaria
+  relacionPlanetaria
 ) => {
-  return await RelacionPlanetaria.save();
+  return await relacionPlanetaria.save();
 };
 const actualizarRelacionPlanetariaPorIdQuery = async (
   id,

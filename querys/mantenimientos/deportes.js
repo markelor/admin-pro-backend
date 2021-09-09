@@ -20,9 +20,9 @@ const getDeportePorNombreQuery = async (nombre) => {
 };
 
 const guardarDeporteQuery = async (
-  Deporte
+  deporte
 ) => {
-  return await Deporte.save();
+  return await deporte.save();
 };
 const actualizarDeportePorIdQuery = async (
   id,

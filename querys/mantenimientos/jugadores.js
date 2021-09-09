@@ -1,18 +1,12 @@
-const { response } = require("express");
-
 const Jugador = require("../../models/mantenimientos/jugador");
 const Partido = require("../../models/mantenimientos/partido");
-const getJugadoresRegistrados = async (req, res = response) => {
-  const jugadoresRegistrados = await Jugador.find()
+const getJugadoresRegistradosQuery = async () => {
+  return await Jugador.find()
     .populate("usuario", "nombre img")
     .populate("deporte", "nombre img");
-  res.json({
-    ok: true,
-    jugadoresRegistrados,
-  });
 };
-const getJugadoresNoRegistrados = async (req, res = response) => {
-  const jugadoresNoRegistrados = await Partido.aggregate([
+const getJugadoresNoRegistradosQuery = async () => {
+  return await Partido.aggregate([
     {
       $lookup: {
         from: "jugadores",
@@ -54,139 +48,38 @@ const getJugadoresNoRegistrados = async (req, res = response) => {
       },
     },
     { $addFields: { jugadoresNoRegistrados: "$allValues" } },
-    { $project: { jugadoresNoRegistrados: 1 } }
+    { $project: { jugadoresNoRegistrados: 1 } },
   ]);
+};
 
-  res.json({
-    ok: true,
-    jugadoresNoRegistrados:jugadoresNoRegistrados[0].jugadoresNoRegistrados,
+const getJugadorPorIdQuery = async (id) => {
+  return await Jugador.findById(id)
+    .populate("usuario", "nombre img")
+    .populate("deporte", "nombre img");
+};
+const getJugadorPorNombreQuery = async (nombre) => {
+  return await Jugador.findOne({
+    nombre: nombre,
   });
 };
 
-const getJugadorById = async (req, res = response) => {
-  const id = req.params.id;
-
-  try {
-    const jugador = await Jugador.findById(id)
-      .populate("usuario", "nombre img")
-      .populate("deporte", "nombre img");
-
-    res.json({
-      ok: true,
-      jugador,
-    });
-  } catch (error) {
-    console.log(error);
-    res.json({
-      ok: true,
-      msg: "Hable con el administrador",
-    });
-  }
+const guardarJugadorQuery = async (jugador) => {
+  return await jugador.save();
+};
+const actualizarJugadorPorIdQuery = async (id, cambiosJugador) => {
+  return await Jugador.findByIdAndUpdate(id, cambiosJugador, { new: true });
 };
 
-const crearJugador = async (req, res = response) => {
-  
-  const uid = req.uid;
-  const jugador = new Jugador({
-    usuario: uid,
-    ...req.body,
-  });
-  try {
-    const existeNombre = await Jugador.findOne({ nombre:jugador.nombre });
-    if (existeNombre) {
-      return res.status(400).json({
-        ok: false,
-        msg: "El jugador ya está registrado",
-      });
-    }
-    const jugadorDB = await jugador.save();
-
-    res.json({
-      ok: true,
-      jugador: jugadorDB,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({
-      ok: false,
-      msg: "Hable con el administrador",
-    });
-  }
-};
-
-const actualizarJugador = async (req, res = response) => {
-  const id = req.params.id;
-  const uid = req.uid;
-
-  try {
-    const jugador = await Jugador.findById(id);
-
-    if (!jugador) {
-      return res.status(404).json({
-        ok: true,
-        msg: "Jugador no encontrado por id",
-      });
-    }
-
-    const cambiosJugador = {
-      ...req.body,
-      usuario: uid,
-    };
-
-    const jugadorActualizado = await Jugador.findByIdAndUpdate(
-      id,
-      cambiosJugador,
-      { new: true }
-    );
-
-    res.json({
-      ok: true,
-      jugador: jugadorActualizado,
-    });
-  } catch (error) {
-    console.log(error);
-
-    res.status(500).json({
-      ok: false,
-      msg: "Hable con el administrador",
-    });
-  }
-};
-
-const borrarJugador = async (req, res = response) => {
-  const id = req.params.id;
-
-  try {
-    const jugador = await Jugador.findById(id);
-
-    if (!jugador) {
-      return res.status(404).json({
-        ok: true,
-        msg: "Jugador no encontrado por id",
-      });
-    }
-
-    await Jugador.findByIdAndDelete(id);
-
-    res.json({
-      ok: true,
-      msg: "Jugador borrado",
-    });
-  } catch (error) {
-    console.log(error);
-
-    res.status(500).json({
-      ok: false,
-      msg: "Hable con el administrador",
-    });
-  }
+const borrarJugadorPorIdQuery = async (id) => {
+  return await Jugador.findByIdAndDelete(id);
 };
 
 module.exports = {
-  getJugadoresRegistrados,
-  getJugadoresNoRegistrados,
-  crearJugador,
-  actualizarJugador,
-  borrarJugador,
-  getJugadorById,
+  getJugadoresRegistradosQuery,
+  getJugadoresNoRegistradosQuery,
+  getJugadorPorIdQuery,
+  getJugadorPorNombreQuery,
+  guardarJugadorQuery,
+  actualizarJugadorPorIdQuery,
+  borrarJugadorPorIdQuery,
 };

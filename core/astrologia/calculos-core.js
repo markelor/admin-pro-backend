@@ -195,19 +195,16 @@ const calcularAspectosPlanetarios = (
   posicionPlanetasMapa2,
   aspectosCuadrante
 ) => {
-
   let relacionesPlanetarias = {
-    aspectos:[],
+    aspectos: [],
     totalPuntosAspectos: 0,
-    totalPuntosCompatibilidad: 0
+    totalPuntosCompatibilidad: 0,
   };
-
 
   let totalPuntosAspectos = 0;
   let totalPuntosCompatibilidad = 0;
   const configAspectos = estrategia.relacionesPlanetarias.configAspectos;
   posicionPlanetasMapa1.forEach((planetaMapa1) => {
-
     posicionPlanetasMapa2.forEach((planetaMapa2) => {
       const gradosAspecto = Math.round(
         Math.abs(
@@ -222,20 +219,19 @@ const calcularAspectosPlanetarios = (
             index < grado.grado + configAspecto.orbe + 1;
             index++
           ) {
-
             if (gradosAspecto === ((index % 360) + 360) % 360) {
-      
               let armonia;
               let puntosAspecto;
               const configArmonias =
                 estrategia.compatibilidadesPlanetarias.configArmonias;
               configArmonias.forEach((configArmonia) => {
-
                 if (
-                  configArmonia.cuerpoCeleste1 === planetaMapa1.cuerpoCeleste.nombre &&
-                  configArmonia.cuerpoCeleste2 === planetaMapa2.cuerpoCeleste.nombre
+                  configArmonia.cuerpoCeleste1 ===
+                    planetaMapa1.cuerpoCeleste.nombre &&
+                  configArmonia.cuerpoCeleste2 ===
+                    planetaMapa2.cuerpoCeleste.nombre
                 ) {
-                  armonia=configArmonia;
+                  armonia = configArmonia;
                   if (configArmonia.armonia === "Negativo") {
                     armonia.puntos = -Math.abs(configArmonia.puntos);
                   }
@@ -244,38 +240,50 @@ const calcularAspectosPlanetarios = (
 
               //Calcular puntos por grado aspecto
               puntosAspecto = Math.abs(
-                configAspecto.puntosPorGrado*
-                (configAspecto.orbe-( Math.abs(grado.grado-gradosAspecto)))+1
+                configAspecto.puntosPorGrado *
+                  (configAspecto.orbe - Math.abs(grado.grado - gradosAspecto)) +
+                  1
               );
               if (
                 configAspecto.aspecto === "Cuadratura" ||
-                configAspecto.aspecto === "Oposicion"
+                configAspecto.aspecto === "Oposicion" ||
+                configAspecto.aspecto === "Semicuadratura" ||
+                configAspecto.aspecto === "Sesquicuadratura"
               ) {
-
-                puntosAspecto = -Math.abs( configAspecto.puntosPorGrado*
-                  (configAspecto.orbe-( Math.abs(grado.grado-gradosAspecto)))+1
+                puntosAspecto = -Math.abs(
+                  configAspecto.puntosPorGrado *
+                    (configAspecto.orbe -
+                      Math.abs(grado.grado - gradosAspecto)) +
+                    1
                 );
+              } else if (configAspecto.aspecto === "Quincuncio") {
+                if (armonia.puntos < 0) {
+                  puntosAspecto = -Math.abs(
+                    configAspecto.puntosPorGrado *
+                      (configAspecto.orbe -
+                        Math.abs(grado.grado - gradosAspecto)) +
+                      1
+                  );
+                }
               } else if (configAspecto.aspecto === "Conjuncion") {
-                if (
-                  armonia.puntos< 0
-                ) {
-                  puntosAspecto = -Math.abs( configAspecto.puntosPorGrado*
-                    (configAspecto.orbe-( Math.abs(index)))+1
+                if (armonia.puntos < 0) {
+                  puntosAspecto = -Math.abs(
+                    configAspecto.puntosPorGrado *
+                      (configAspecto.orbe - Math.abs(index)) +
+                      1
                   );
-                } else if (
-                    armonia.puntos === 0
-                ) {
+                } else if (armonia.puntos === 0) {
                   puntosAspecto = 0;
-                }else{
+                } else {
                   puntosAspecto = Math.abs(
-                    configAspecto.puntosPorGrado*
-                    (configAspecto.orbe-( Math.abs(index)))+1
+                    configAspecto.puntosPorGrado *
+                      (configAspecto.orbe - Math.abs(index)) +
+                      1
                   );
-
                 }
               }
               const infoAspecto = {
-                aspecto:configAspecto.aspecto,
+                aspecto: configAspecto.aspecto,
                 gradosAspecto: gradosAspecto,
                 planetaMapa1: planetaMapa1.cuerpoCeleste.nombre,
                 planetaMapa2: planetaMapa2.cuerpoCeleste.nombre,
@@ -283,14 +291,20 @@ const calcularAspectosPlanetarios = (
                 puntosCompatibilidad: armonia.puntos,
               };
 
-              if (natal && planetaMapa1.cuerpoCeleste.nombre === planetaMapa2.cuerpoCeleste.nombre) {
+              if (
+                natal &&
+                planetaMapa1.cuerpoCeleste.nombre ===
+                  planetaMapa2.cuerpoCeleste.nombre
+              ) {
                 //No añadir planeta
               } else {
                 //Quitar repetidas para natal
                 const repeticion = relacionesPlanetarias.aspectos.find(
                   (relacionPlanetaria) =>
-                    relacionPlanetaria.planetaMapa2 === planetaMapa1.cuerpoCeleste.nombre  &&
-                    relacionPlanetaria.planetaMapa1 === planetaMapa2.cuerpoCeleste.nombre 
+                    relacionPlanetaria.planetaMapa2 ===
+                      planetaMapa1.cuerpoCeleste.nombre &&
+                    relacionPlanetaria.planetaMapa1 ===
+                      planetaMapa2.cuerpoCeleste.nombre
                 );
                 if (!repeticion) {
                   totalPuntosAspectos =

@@ -3,29 +3,30 @@ const bcrypt = require("bcryptjs");
 
 const Usuario = require("../../models/mantenimientos/usuario");
 const { generarJWT } = require("../../helpers/jwt");
-
+const usuariosQuerys = require("../../querys/mantenimientos/usuarios");
 const getUsuarios = async (req, res) => {
   const desde = Number(req.query.desde) || 0;
-
-  const [usuarios, total] = await Promise.all([
-    Usuario.find({}, "nombre email role google img").skip(desde).limit(5),
-
-    Usuario.countDocuments(),
-  ]);
-
-  res.json({
-    ok: true,
-    usuarios,
-    total,
-  });
+  try {
+    const [usuarios, total] = await usuariosQuerys.getUsuariosQuery(desde, 5);
+    res.json({
+      ok: true,
+      usuarios,
+      total,
+    });
+  } catch (error) {
+    console.log(error);
+    res.json({
+      ok: false,
+      msg: "Hable con el administrador",
+    });
+  }
 };
 
 const crearUsuario = async (req, res = response) => {
   const { email, password } = req.body;
 
   try {
-    const existeEmail = await Usuario.findOne({ email });
-
+    const existeEmail = await usuariosQuerys.getUsuarioPorEmailQuery(email );
     if (existeEmail) {
       return res.status(400).json({
         ok: false,
@@ -40,8 +41,7 @@ const crearUsuario = async (req, res = response) => {
     usuario.password = bcrypt.hashSync(password, salt);
 
     // Guardar usuario
-    await usuario.save();
-
+    await usuariosQuerys.guardarUsuarioQuery(usuario);
     // Generar el TOKEN - JWT
     const token = await generarJWT(usuario.id);
 
@@ -63,10 +63,8 @@ const actualizarUsuario = async (req, res = response) => {
   // TODO: Validar token y comprobar si es el usuario correcto
 
   const uid = req.params.id;
-
   try {
-    const usuarioDB = await Usuario.findById(uid);
-
+    const usuarioDB = await usuariosQuerys.getUsuarioPorIdQuery(uid);
     if (!usuarioDB) {
       return res.status(404).json({
         ok: false,
@@ -96,9 +94,10 @@ const actualizarUsuario = async (req, res = response) => {
       });
     }
 
-    const usuarioActualizado = await Usuario.findByIdAndUpdate(uid, campos, {
-      new: true,
-    });
+    const usuarioActualizado = await usuariosQuerys.actualizarUsuarioPorIdQuery(
+      uid,
+      campos
+    );
 
     res.json({
       ok: true,
@@ -117,7 +116,7 @@ const borrarUsuario = async (req, res = response) => {
   const uid = req.params.id;
 
   try {
-    const usuarioDB = await Usuario.findById(uid);
+    const usuarioDB = await usuariosQuerys.getUsuarioPorIdQuery(uid);
 
     if (!usuarioDB) {
       return res.status(404).json({
@@ -126,7 +125,7 @@ const borrarUsuario = async (req, res = response) => {
       });
     }
 
-    await Usuario.findByIdAndDelete(uid);
+    await usuariosQuerys.borrarUsuarioPorIdQuery(uid);
 
     res.json({
       ok: true,
@@ -145,5 +144,5 @@ module.exports = {
   getUsuarios,
   crearUsuario,
   actualizarUsuario,
-  borrarUsuario,
+  borrarUsuario
 };

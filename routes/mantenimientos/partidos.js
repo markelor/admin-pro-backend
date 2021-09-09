@@ -8,20 +8,11 @@ const { validarCampos } = require("../../middlewares/validar-campos");
 
 const { validarJWT } = require("../../middlewares/validar-jwt");
 
-const { getPartidos, crearPartidos } = require("../../controllers/mantenimientos/partidos");
+const { getPartidos } = require("../../controllers/mantenimientos/partidos");
 
 const router = Router();
 
 router.get("/", validarJWT, getPartidos);
 
-router.post(
-  "/",
-  [
-    validarJWT,
-    check("deporte", "El deporte es necesario").isMongoId(),
-    validarCampos,
-  ],
-  crearPartidos
-);
 
 module.exports = router;

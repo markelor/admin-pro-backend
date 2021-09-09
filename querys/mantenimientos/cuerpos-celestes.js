@@ -20,9 +20,9 @@ const getCuerpoCelestePorNombreQuery = async (nombre) => {
 };
 
 const guardarCuerpoCelesteQuery = async (
-  CuerpoCeleste
+  cuerpoCeleste
 ) => {
-  return await CuerpoCeleste.save();
+  return await cuerpoCeleste.save();
 };
 const actualizarCuerpoCelestePorIdQuery = async (
   id,

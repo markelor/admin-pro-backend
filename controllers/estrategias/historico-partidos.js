@@ -96,10 +96,10 @@ const getAprenderCompatibilidades = async (req, res = response) => {
   let arrayFalloGuardado;
   let estrategiaGuardado = JSON.parse(JSON.stringify(estrategia));
   //lanzar 100 veces
-  for (let z = 0; z < 10; z++) {
+  for (let z = 0; z < 20; z++) {
     console.log("++++++++++++++++++++++++++++++++++++++++++++");
     console.log("veces", z);
-    for (let y = 45; y <= 45; y = y + 5) {
+    for (let y = 85; y >= 55; y = y - 5) {
       aciertoGuardado = 0;
       falloGuardado = 0;
       arrayAciertoGuardado = [];

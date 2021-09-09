@@ -97,7 +97,7 @@ const borrarDeporte = async (req, res = response) => {
       });
     }
 
-    await await deportesQuerys.borrarDeportePorIdQuery(id);
+    await deportesQuerys.borrarDeportePorIdQuery(id);
 
     res.json({
       ok: true,
