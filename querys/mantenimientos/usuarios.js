@@ -13,6 +13,11 @@ const getUsuarioPorIdQuery = async (id) => {
     "nombre img"
   );
 };
+const getUsuariosPorNombreQuery = async (nombre) => {
+  return await Usuario.find({
+    nombre: nombre,
+  });
+};
 const getUsuarioPorEmailQuery = async (email) => {
   return await Usuario.findOne({
     email: email,
@@ -42,6 +47,7 @@ const borrarUsuarioPorIdQuery = async (id) => {
 module.exports = {
   getUsuariosQuery,
   getUsuarioPorIdQuery,
+  getUsuariosPorNombreQuery,
   getUsuarioPorEmailQuery,
   guardarUsuarioQuery,
   actualizarUsuarioPorIdQuery,

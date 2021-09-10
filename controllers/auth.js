@@ -1,12 +1,10 @@
 const { response } = require('express');
 const bcrypt = require('bcryptjs');
-
 const Usuario = require('../models/mantenimientos/usuario');
 const { generarJWT } = require('../helpers/jwt');
 const { googleVerify } = require('../helpers/google-verify');
 const { getMenuFrontEnd } = require('../helpers/menu-frontend');
-
-
+const usuariosQuerys = require("../querys/mantenimientos/usuarios");
 const login = async( req, res = response ) => {
 
     const { email, password } = req.body;
@@ -14,7 +12,7 @@ const login = async( req, res = response ) => {
     try {
         
         // Verificar email
-        const usuarioDB = await Usuario.findOne({ email });
+        const usuarioDB = await usuariosQuerys.getUsuarioPorEmailQuery(email);
 
         if ( !usuarioDB ) {
             return res.status(404).json({
@@ -62,7 +60,7 @@ const googleSignIn = async( req, res = response ) => {
 
         const { name, email, picture } = await googleVerify( googleToken );
 
-        const usuarioDB = await Usuario.findOne({ email });
+        const usuarioDB = await usuariosQuerys.getUsuarioPorEmailQuery(email);
         let usuario;
 
         if ( !usuarioDB ) {
@@ -81,7 +79,7 @@ const googleSignIn = async( req, res = response ) => {
         }
 
         // Guardar en DB
-        await usuario.save();
+        await usuariosQuerys.guardarUsuarioQuery(usuario);
 
         // Generar el TOKEN - JWT
         const token = await generarJWT( usuario.id );
@@ -111,7 +109,7 @@ const renewToken = async(req, res = response) => {
     const token = await generarJWT( uid );
 
     // Obtener el usuario por UID
-    const usuario = await Usuario.findById( uid );
+    const usuario = await usuariosQuerys.getUsuarioPorIdQuery(uid);
 
 
     res.json({

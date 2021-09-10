@@ -62,6 +62,13 @@ const getJugadorPorNombreQuery = async (nombre) => {
     nombre: nombre,
   });
 };
+const getJugadoresPorNombreQuery = async (nombre) => {
+  return await Jugador.find({
+    nombre: nombre,
+  })
+    .populate("usuario", "nombre img")
+    .populate("deporte", "nombre img");
+};
 
 const guardarJugadorQuery = async (jugador) => {
   return await jugador.save();
@@ -79,6 +86,7 @@ module.exports = {
   getJugadoresNoRegistradosQuery,
   getJugadorPorIdQuery,
   getJugadorPorNombreQuery,
+  getJugadoresPorNombreQuery,
   guardarJugadorQuery,
   actualizarJugadorPorIdQuery,
   borrarJugadorPorIdQuery,

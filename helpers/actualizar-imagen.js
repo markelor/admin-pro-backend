@@ -1,9 +1,8 @@
-const Usuario = require('../models/mantenimientos/usuario');
+
 const fs = require('fs');
-
-const Jugador = require('../models/mantenimientos/jugador');
-const Deporte = require('../models/mantenimientos/deporte');
-
+const jugadoresQuerys = require("../querys/mantenimientos/jugadores");
+const deportesQuerys = require("../querys/mantenimientos/deportes");
+const usuariosQuerys = require("../querys/mantenimientos/usuarios");
 const borrarImagen = ( path ) => {
     if ( fs.existsSync( path ) ) {
         // borrar la imagen anterior
@@ -11,14 +10,13 @@ const borrarImagen = ( path ) => {
     }
 }
 
-
 const actualizarImagen = async(tipo, id, nombreArchivo) => {
 
     let pathViejo = '';
     
     switch( tipo ) {
         case 'jugadores':
-            const jugador = await Jugador.findById(id);
+            const jugador = await jugadoresQuerys.getJugadorPorIdQuery(id);
             if ( !jugador ) {
                 console.log('No es un jugador por id');
                 return false;
@@ -28,13 +26,13 @@ const actualizarImagen = async(tipo, id, nombreArchivo) => {
             borrarImagen( pathViejo );
 
             jugador.img = nombreArchivo;
-            await jugador.save();
+            await jugadoresQuerys.guardarJugadorQuery(jugador);
             return true;
 
         break;
         
         case 'deportes':
-            const deporte = await Deporte.findById(id);
+            const deporte = await deportesQuerys.getDeportePorIdQuery(id);;
             if ( !deporte ) {
                 console.log('No es un deporte por id');
                 return false;
@@ -44,14 +42,14 @@ const actualizarImagen = async(tipo, id, nombreArchivo) => {
             borrarImagen( pathViejo );
 
             deporte.img = nombreArchivo;
-            await deporte.save();
+            await deportesQuerys.guardarDeporteQuery(deporte);
             return true;
 
         break;
         
         case 'usuarios':
 
-            const usuario = await Usuario.findById(id);
+            const usuario = await usuariosQuerys.getUsuarioPorIdQuery(id);
             if ( !usuario ) {
                 console.log('No es un usuario por id');
                 return false;
@@ -61,16 +59,12 @@ const actualizarImagen = async(tipo, id, nombreArchivo) => {
             borrarImagen( pathViejo );
 
             usuario.img = nombreArchivo;
-            await usuario.save();
+            await usuariosQuerys.guardarUsuarioQuery(usuario);
             return true;
 
         break;
     }
-
-
 }
-
-
 
 module.exports = { 
     actualizarImagen

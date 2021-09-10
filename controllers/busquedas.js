@@ -1,17 +1,16 @@
 const { response } = require("express");
-
-const Usuario = require("../models/mantenimientos/usuario");
-const Jugador = require("../models/mantenimientos/jugador");
-const Deporte = require("../models/mantenimientos/deporte");
+const jugadoresQuerys = require("../querys/mantenimientos/jugadores");
+const deportesQuerys = require("../querys/mantenimientos/deportes");
+const usuariosQuerys = require("../querys/mantenimientos/usuarios");
 
 const getTodo = async (req, res = response) => {
   const busqueda = req.params.busqueda;
   const regex = new RegExp(busqueda, "i");
 
   const [usuarios, jugadores, deportes] = await Promise.all([
-    Usuario.find({ nombre: regex }),
-    Jugador.find({ nombre: regex }),
-    Deporte.find({ nombre: regex }),
+    usuariosQuerys.getUsuariosPorNombreQuery(regex),
+    jugadoresQuerys.getJugadoresPorNombreQuery(regex),
+    deportesQuerys.getDeportesPorNombreQuery(regex),
   ]);
 
   res.json({
@@ -31,21 +30,15 @@ const getDocumentosColeccion = async (req, res = response) => {
 
   switch (tabla) {
     case "jugadores":
-      data = await Jugador.find({ nombre: regex })
-        .populate("usuario", "nombre img")
-        .populate("deporte", "nombre img");
+      data = await jugadoresQuerys.getJugadoresPorNombreQuery(regex);
       break;
 
     case "deportes":
-      data = await Deporte.find({ nombre: regex }).populate(
-        "usuario",
-        "nombre img"
-      );
+      data = await deportesQuerys.getDeportesPorNombreQuery(regex);
       break;
 
     case "usuarios":
-      data = await Usuario.find({ nombre: regex });
-
+      data = usuariosQuerys.getUsuariosPorNombreQuery(regex);
       break;
 
     default:
