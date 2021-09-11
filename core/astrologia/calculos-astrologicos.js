@@ -219,13 +219,12 @@ const obtenerHistoricoPartidos = async (
       casas,
       aspectosCuadrante
     );
-
     //transito jugador 1
     jugador1Transitos = await obtenerCartaTransitos(
       estrategia,
       jugador1Natal.planetasNatal,
       partido.jugador1,
-      partido.createdAt,
+      new Date(partido.createdAt),
       partido.horaInicio,
       signos,
       casas,
@@ -244,7 +243,7 @@ const obtenerHistoricoPartidos = async (
       estrategia,
       jugador2Natal.planetasNatal,
       partido.jugador2,
-      partido.createdAt,
+      new Date(partido.createdAt),
       partido.horaInicio,
       signos,
       casas,
@@ -255,7 +254,7 @@ const obtenerHistoricoPartidos = async (
       jugador1Natal,
       jugador1Transitos,
       jugador2Natal,
-      jugador2Transitos
+      jugador2Transitos,
     });
   }
 
