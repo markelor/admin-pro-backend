@@ -9,13 +9,13 @@ const { validarCampos } = require("../../middlewares/validar-campos");
 const { validarJWT } = require("../../middlewares/validar-jwt");
 
 const {
-  getHistoricoPartidos,
+  getHistoricoPartidosCarta,
   getAprenderCompatibilidades,
 } = require("../../controllers/estrategias/historico-partidos");
 
 const router = Router();
 //router.get( '/', validarJWT, getHistoricoPartidos );
-router.post("/", validarJWT, getHistoricoPartidos);
+router.post("/", validarJWT, getHistoricoPartidosCarta);
 router.put( "/aprender-compatibilidades/:id",
     [
         validarJWT,

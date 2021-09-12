@@ -7,7 +7,7 @@ const compatibilidadesPlanetariasQuerys = require("../../querys/configuraciones/
 const partidosQuerys = require("../../querys/mantenimientos/partidos");
 const astrologia = require("../../core/astrologia/calculos-astrologicos");
 
-const getHistoricoPartidos = async (req, res = response) => {
+const getHistoricoPartidosCarta = async (req, res = response) => {
   let resultadoHistoricoPartidos = await partidosQuerys.getHistoricoPartidosQuery();
   resultadoHistoricoPartidos = resultadoHistoricoPartidos.filter(
     (partido) => Number(partido.horaInicio.split(":")[0]) < 20
@@ -88,12 +88,11 @@ const getAprenderCompatibilidades = async (req, res = response) => {
   console.log("FIN");
   res.json({
     ok: true,
-    estrategia: estrategia,
-    fallos: arrayFalloGuardado,
+    estrategia: estrategia
   });
 };
 
 module.exports = {
-  getHistoricoPartidos,
+  getHistoricoPartidosCarta,
   getAprenderCompatibilidades,
 };

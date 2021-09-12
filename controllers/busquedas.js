@@ -38,7 +38,7 @@ const getDocumentosColeccion = async (req, res = response) => {
       break;
 
     case "usuarios":
-      data = usuariosQuerys.getUsuariosPorNombreQuery(regex);
+      data = await usuariosQuerys.getUsuariosPorNombreQuery(regex);
       break;
 
     default:
