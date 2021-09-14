@@ -1,11 +1,11 @@
 const { response } = require("express");
-var request = require("request")
-
+var request = require("request");
+const astrologia = require("../../core/astrologia/calculos-astrologicos");
 const partidosQuerys = require("../../querys/mantenimientos/partidos");
-
-const getPartidos = async (req, res = response) => {
+const jugadoresQuerys = require("../../querys/mantenimientos/jugadores");
+const getPartidosGuardados = async (req, res = response) => {
   try {
-    const partidos=await partidosQuerys.getPartidosQuery();
+    const partidos = await partidosQuerys.getPartidosQuery();
     res.json({
       ok: true,
       partidos,
@@ -18,7 +18,63 @@ const getPartidos = async (req, res = response) => {
     });
   }
 };
+const getPartidosHoy = async (req, res = response) => {
+  const estrategia = req.body;
+  const signos = false;
+  const casas = false;
+  const aspectosCuadrante = req.body.aspectosCuadrante;
+  //var url = "http://localhost:5001";
+  var url = "http://ec2-18-117-195-254.us-east-2.compute.amazonaws.com:5001";
+  nombreJugadores = [];
+  request(
+    {
+      url: url,
+      json: true,
+    },
+    async function (error, resp, body) {
+      if (!error && resp.statusCode === 200) {
+        const partidosPorJugar = body[0].porJugar;
+        partidosPorJugar.forEach((partido) => {
+          nombreJugadores.push(partido.jugador1);
+          nombreJugadores.push(partido.jugador2);
+        });
+        const jugadoresRegistrados =
+          await jugadoresQuerys.getJugadoresRegistradosHoyQuery(
+            nombreJugadores
+          );
+        partidosPorJugar.forEach((partido) => {
+          jugadoresRegistrados.forEach((jugadorRegistrado) => {
+            if (partido.jugador1 === jugadorRegistrado.nombre) {
+              partido.jugador1 = jugadorRegistrado;
+            } else if (partido.jugador2 === jugadorRegistrado.nombre) {
+              partido.jugador2 = jugadorRegistrado;
+            }
+          });
+        });
+        const partidosHoy = await astrologia.obtenerHistoricoPartidos(
+          estrategia,
+          partidosPorJugar,
+          signos,
+          casas,
+          aspectosCuadrante
+        );
+
+        res.json({
+          ok: true,
+          partidosEnJuego: body[0].enDirecto,
+          partidosPorJugar: partidosHoy,
+        });
+      } else {
+        res.json({
+          ok: false,
+          msg: "Hable con el administrador",
+        });
+      }
+    }
+  );
+};
 
 module.exports = {
-  getPartidos
+  getPartidosGuardados,
+  getPartidosHoy,
 };

@@ -51,6 +51,11 @@ const getJugadoresNoRegistradosQuery = async () => {
     { $project: { jugadoresNoRegistrados: 1 } },
   ]);
 };
+const getJugadoresRegistradosHoyQuery = async (jugadores) => {
+  return await Jugador.find({ nombre: { $in: jugadores }})
+    .populate("usuario", "nombre img")
+    .populate("deporte", "nombre img");
+};
 
 const getJugadorPorIdQuery = async (id) => {
   return await Jugador.findById(id)
@@ -84,6 +89,7 @@ const borrarJugadorPorIdQuery = async (id) => {
 module.exports = {
   getJugadoresRegistradosQuery,
   getJugadoresNoRegistradosQuery,
+  getJugadoresRegistradosHoyQuery,
   getJugadorPorIdQuery,
   getJugadorPorNombreQuery,
   getJugadoresPorNombreQuery,

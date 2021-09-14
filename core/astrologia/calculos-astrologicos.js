@@ -200,62 +200,64 @@ const obtenerHistoricoPartidos = async (
   //Obtener partidas del jugador
 
   for (const partido of partidos) {
-    if (
-      Number(partido.resultado.split(":")[0]) >
-      Number(partido.resultado.split(":")[1])
-    ) {
-      partido.ganador = partido.jugador1.nombre;
-    } else if (
-      Number(partido.resultado.split(":")[0]) <
-      Number(partido.resultado.split(":")[1])
-    ) {
-      partido.ganador = partido.jugador2.nombre;
-    }
+    if (partido.jugador1.nombre && partido.jugador2.nombre) {
+      if (
+        Number(partido.resultado.split(":")[0]) >
+        Number(partido.resultado.split(":")[1])
+      ) {
+        partido.ganador = partido.jugador1.nombre;
+      } else if (
+        Number(partido.resultado.split(":")[0]) <
+        Number(partido.resultado.split(":")[1])
+      ) {
+        partido.ganador = partido.jugador2.nombre;
+      }
 
-    jugador1Natal = await obtenerCartaNatal(
-      estrategia,
-      partido.jugador1,
-      signos,
-      casas,
-      aspectosCuadrante
-    );
-    //transito jugador 1
-    jugador1Transitos = await obtenerCartaTransitos(
-      estrategia,
-      jugador1Natal.planetasNatal,
-      partido.jugador1,
-      new Date(partido.createdAt),
-      partido.horaInicio,
-      signos,
-      casas,
-      aspectosCuadrante
-    );
-    //natal jugador2
-    jugador2Natal = await obtenerCartaNatal(
-      estrategia,
-      partido.jugador2,
-      signos,
-      casas,
-      aspectosCuadrante
-    );
-    //transito jugador 2
-    jugador2Transitos = await obtenerCartaTransitos(
-      estrategia,
-      jugador2Natal.planetasNatal,
-      partido.jugador2,
-      new Date(partido.createdAt),
-      partido.horaInicio,
-      signos,
-      casas,
-      aspectosCuadrante
-    );
-    historicoPartidos.push({
-      partido,
-      jugador1Natal,
-      jugador1Transitos,
-      jugador2Natal,
-      jugador2Transitos,
-    });
+      jugador1Natal = await obtenerCartaNatal(
+        estrategia,
+        partido.jugador1,
+        signos,
+        casas,
+        aspectosCuadrante
+      );
+      //transito jugador 1
+      jugador1Transitos = await obtenerCartaTransitos(
+        estrategia,
+        jugador1Natal.planetasNatal,
+        partido.jugador1,
+        partido.createdAt? new Date(partido.createdAt):new Date(),
+        partido.horaInicio,
+        signos,
+        casas,
+        aspectosCuadrante
+      );
+      //natal jugador2
+      jugador2Natal = await obtenerCartaNatal(
+        estrategia,
+        partido.jugador2,
+        signos,
+        casas,
+        aspectosCuadrante
+      );
+      //transito jugador 2
+      jugador2Transitos = await obtenerCartaTransitos(
+        estrategia,
+        jugador2Natal.planetasNatal,
+        partido.jugador2,
+        partido.createdAt? new Date(partido.createdAt):new Date(),
+        partido.horaInicio,
+        signos,
+        casas,
+        aspectosCuadrante
+      );
+      historicoPartidos.push({
+        partido,
+        jugador1Natal,
+        jugador1Transitos,
+        jugador2Natal,
+        jugador2Transitos,
+      });
+    }
   }
 
   return {
