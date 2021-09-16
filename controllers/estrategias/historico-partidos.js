@@ -41,7 +41,7 @@ const getAprenderCompatibilidades = async (req, res = response) => {
   for (let z = 0; z < 20; z++) {
     console.log("++++++++++++++++++++++++++++++++++++++++++++");
     console.log("veces", z);
-    for (let y = 85; y >= 55; y = y - 5) {
+    for (let y = 60; y >= 60; y = y - 5) {
       procesarCalculoCompatibilidades.send({
         estrategia,
         resultadoHistoricoPartidos,
