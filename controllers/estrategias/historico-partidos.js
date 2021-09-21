@@ -34,14 +34,18 @@ const getAprenderCompatibilidades = async (req, res = response) => {
   resultadoHistoricoPartidos = resultadoHistoricoPartidos.filter(
     (partido) => Number(partido.horaInicio.split(":")[0]) < 20
   );
-  let estrategia = req.body;
+  let estrategia = req.body.estrategia;
   const id = req.params.id;
+  const cicloDesde = req.body.cicloDesde;
+  const cicloHasta = req.body.cicloHasta;
+  const intervalo = req.body.intervalo;
+  const repeticiones = req.body.repeticiones;
   const uid = req.uid;
-  //lanzar 100 veces
-  for (let z = 0; z < 20; z++) {
+  //repeticiones
+  for (let z = 0; z < repeticiones; z++) {
     console.log("++++++++++++++++++++++++++++++++++++++++++++");
     console.log("veces", z);
-    for (let y = 60; y >= 60; y = y - 5) {
+    for (let y = cicloDesde; y >= cicloHasta; y = y - intervalo) {
       procesarCalculoCompatibilidades.send({
         estrategia,
         resultadoHistoricoPartidos,

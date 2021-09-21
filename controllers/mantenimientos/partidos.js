@@ -42,7 +42,12 @@ const getPartidosHoy = async (req, res = response) => {
           await jugadoresQuerys.getJugadoresRegistradosHoyQuery(
             nombreJugadores
           );
+          const historicoPartidosPorNombre =
+          await partidosQuerys.getHistoricoPartidosPorNombreQuery(
+            nombreJugadores
+          );
         partidosPorJugar.forEach((partido) => {
+          
           jugadoresRegistrados.forEach((jugadorRegistrado) => {
             if (partido.jugador1 === jugadorRegistrado.nombre) {
               partido.jugador1 = jugadorRegistrado;
@@ -50,6 +55,17 @@ const getPartidosHoy = async (req, res = response) => {
               partido.jugador2 = jugadorRegistrado;
             }
           });
+          //Añadir historico partidos
+          partido.jugador1HistoricoPartidos=[];
+          partido.jugador2HistoricoPartidos=[];
+          historicoPartidosPorNombre.forEach(historicoPartido => {
+            if(partido.jugador1.nombre===historicoPartido.jugador1 || partido.jugador1.nombre===historicoPartido.jugador2){
+              partido.jugador1HistoricoPartidos.push(historicoPartido);
+            }else if(partido.jugador2.nombre===historicoPartido.jugador1 || partido.jugador2.nombre===historicoPartido.jugador2){
+              partido.jugador2HistoricoPartidos.push(historicoPartido);
+            }
+          });
+          
         });
         const partidosHoy = await astrologia.obtenerHistoricoPartidos(
           estrategia,

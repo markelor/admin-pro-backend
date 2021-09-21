@@ -5,7 +5,7 @@ const getPartidosQuery = async () => {
     .populate("usuario", "nombre img")
     .populate("deporte", "nombre img");
 };
-const getHistoricoPartidosQuery = async() => {
+const getHistoricoPartidosQuery = async () => {
   return await Partido.aggregate([
     {
       $lookup: {
@@ -58,10 +58,19 @@ const getHistoricoPartidosQuery = async() => {
         },
       },
     },
-  ])
+  ]);
 };
+const getHistoricoPartidosPorNombreQuery = async (jugadores) => {
+  return await Partido.
+  find({
+    $or: [{ jugador1: { $in: jugadores } }, { jugador2: { $in: jugadores } }],
+  }).populate("usuario", "nombre img")
+    .populate("deporte", "nombre img");
+};
+
 
 module.exports = {
   getPartidosQuery,
+  getHistoricoPartidosPorNombreQuery,
   getHistoricoPartidosQuery
 };

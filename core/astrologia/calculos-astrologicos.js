@@ -2,7 +2,6 @@ const ficheroPlanetas = require("./datos-json/planetas.json");
 //const ficheroPartidas = require("./partidas/partidas");
 const calculosAstrologicos = require("./calculos-core");
 const EstadoPlanetas = require("./model/estado-planetas.model").EstadoPlanetas;
-const estrategia = require("../../models/configuraciones/estrategia");
 /**
  *Función que obtiene la información de cada planeta.Dignidades de signos y casas incluidas
 
