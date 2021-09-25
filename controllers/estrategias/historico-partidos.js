@@ -30,7 +30,7 @@ const getHistoricoPartidosCarta = async (req, res = response) => {
   });
 };
 const getAprenderCompatibilidades = async (req, res = response) => {
-  let resultadoHistoricoPartidos = await partidosQuerys.getHistoricoPartidosQuery();;
+  let resultadoHistoricoPartidos = await partidosQuerys.getHistoricoPartidosQuery();
   resultadoHistoricoPartidos = resultadoHistoricoPartidos.filter(
     (partido) => Number(partido.horaInicio.split(":")[0]) < 20
   );
