@@ -5,6 +5,7 @@ const procesarCalculoCompatibilidades = require("child_process").fork(
 );
 const compatibilidadesPlanetariasQuerys = require("../../querys/configuraciones/compatibilidades-planetarias");
 const partidosQuerys = require("../../querys/mantenimientos/partidos");
+const estrategiasQuerys = require("../../querys/configuraciones/estrategias");
 const astrologia = require("../../core/astrologia/calculos-astrologicos");
 
 const getHistoricoPartidosCarta = async (req, res = response) => {
@@ -30,10 +31,6 @@ const getHistoricoPartidosCarta = async (req, res = response) => {
   });
 };
 const getAprenderCompatibilidades = async (req, res = response) => {
-  let resultadoHistoricoPartidos = await partidosQuerys.getHistoricoPartidosQuery();
-  resultadoHistoricoPartidos = resultadoHistoricoPartidos.filter(
-    (partido) => Number(partido.horaInicio.split(":")[0]) < 20
-  );
   let estrategia = req.body.estrategia;
   const id = req.params.id;
   const cicloDesde = req.body.cicloDesde;
@@ -41,6 +38,29 @@ const getAprenderCompatibilidades = async (req, res = response) => {
   const intervalo = req.body.intervalo;
   const repeticiones = req.body.repeticiones;
   const uid = req.uid;
+  //Marcar aprendiendo estrategia
+  try {
+    estrategia.puntosNatal= req.body.puntosNatal;
+    estrategia.aprendiendo = true;
+    const cambiosEstrategia = {
+      ...estrategia,
+      usuario: uid,
+    };
+    const estrategiaActualizado = estrategiasQuerys.actualizarEstrategiaPorIdQuery(estrategia._id, cambiosEstrategia);
+  } catch (error) {
+    console.log(error);
+
+    res.status(500).json({
+      ok: false,
+      msg: "Hable con el administrador",
+    });
+  }
+
+  let resultadoHistoricoPartidos = await partidosQuerys.getHistoricoPartidosQuery();
+  resultadoHistoricoPartidos = resultadoHistoricoPartidos.filter(
+    (partido) => Number(partido.horaInicio.split(":")[0]) < 20
+  );
+
   //repeticiones
   for (let z = 0; z < repeticiones; z++) {
     console.log("++++++++++++++++++++++++++++++++++++++++++++");
@@ -88,6 +108,23 @@ const getAprenderCompatibilidades = async (req, res = response) => {
         });
       }
     }
+  }
+  //Quitar aprendiendo estrategia
+  try {
+    
+    estrategia.aprendiendo = false;
+    const cambiosEstrategia = {
+      ...estrategia,
+      usuario: uid,
+    };
+    const estrategiaActualizado = estrategiasQuerys.actualizarEstrategiaPorIdQuery(estrategia._id, cambiosEstrategia);
+  } catch (error) {
+    console.log(error);
+
+    res.status(500).json({
+      ok: false,
+      msg: "Hable con el administrador",
+    });
   }
   console.log("FIN");
   res.json({

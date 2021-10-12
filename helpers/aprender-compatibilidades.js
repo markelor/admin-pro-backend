@@ -1,4 +1,5 @@
 const astrologia = require("../core/astrologia/calculos-astrologicos");
+
 const calcularCompatibilidades = async (
   estrategia,
   resultadoHistoricoPartidos,

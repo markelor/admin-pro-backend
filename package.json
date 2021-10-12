@@ -22,7 +22,7 @@
     "mongoose": "^5.9.21",
     "node-schedule": "^2.0.0",
     "request": "^2.88.2",
-    "uuid": "^8.2.0",
-    "swisseph": "^0.5.15"
+    "swisseph": "^0.5.16",
+    "uuid": "^8.2.0"
   }
 }

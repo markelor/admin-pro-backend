@@ -11,6 +11,7 @@ const getCartaNatal = async (req, res) => {
   let casas = false;
   const estrategia=undefined;
   const aspectosCuadrante=undefined;
+
   /*if (jugador.fiabilidad === "Exacto") {
     signos = true;
     casas = true;

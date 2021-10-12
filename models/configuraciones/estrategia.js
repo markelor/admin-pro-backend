@@ -36,6 +36,11 @@ const EstrategiaSchema = Schema(
       required: true,
       type: Schema.Types.ObjectId,
       ref: "Usuario",
+    },
+    aprendiendo: {
+      required: true,
+      type: Boolean,
+      default:false
     }
   },
   { collection: "config-estrategias", timestamps: true }

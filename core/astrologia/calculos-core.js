@@ -321,8 +321,15 @@ const calcularAspectosPlanetarios = (
       });
     });
   });
-  relacionesPlanetarias.totalPuntosAspectos = totalPuntosAspectos;
-  relacionesPlanetarias.totalPuntosCompatibilidad = totalPuntosCompatibilidad;
+  if(natal){
+    relacionesPlanetarias.totalPuntosAspectos = totalPuntosAspectos*estrategia.puntosNatal;
+    relacionesPlanetarias.totalPuntosCompatibilidad = totalPuntosCompatibilidad*estrategia.puntosNatal;
+
+  }else{
+    relacionesPlanetarias.totalPuntosAspectos = totalPuntosAspectos;
+    relacionesPlanetarias.totalPuntosCompatibilidad = totalPuntosCompatibilidad;
+  }
+
   return relacionesPlanetarias;
 };
 
