@@ -54,7 +54,7 @@ app.listen(process.env.PORT, () => {
   console.log("Servidor corriendo en puerto " + process.env.PORT);
 });
 
-schedule.scheduleJob("0 50 21 * * *", () => {
+/*schedule.scheduleJob("0 50 21 * * *", () => {
   var url = "http://localhost:5001";
   request(
     {
@@ -78,7 +78,7 @@ schedule.scheduleJob("0 50 21 * * *", () => {
       }
     }
   );
-});
+});*/
 
 /* 
 Basic mongo dump and restore commands, they contain more options you can have a look at man page for both of them.
@@ -92,7 +92,7 @@ Using mongorestore - without any args:
 
 // Scheduling the backup every days (using node-cron)
 
-schedule.scheduleJob("0 58 21 * * *", () => backupMongoDB());
+/*schedule.scheduleJob("0 58 21 * * *", () => backupMongoDB());
 
 const backupMongoDB = () => {
   const ARCHIVE_PATH = path.join(
@@ -122,3 +122,4 @@ const backupMongoDB = () => {
     else console.log("Backup is successfull ✅");
   });
 };
+*/

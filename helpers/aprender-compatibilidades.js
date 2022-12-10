@@ -20,7 +20,7 @@ const calcularCompatibilidades = async (
     i < estrategia.compatibilidadesPlanetarias.configArmonias.length;
     i++
   ) {
-    for (let j = -4; j < 5; j++) {
+    for (let j = -6; j < 7; j++) {
       let armoniaGuardado;
       if (j > 0) {
         armoniaGuardado = "Positivo";

@@ -7,6 +7,11 @@ const getPartidosQuery = async () => {
 };
 const getHistoricoPartidosQuery = async () => {
   return await Partido.aggregate([
+    /*{
+      $match: {
+         createdAt : {"$gt" : new Date(Date.now() - 90*24*60*60 * 1000) }
+      }
+    },*/
     {
       $lookup: {
         from: "jugadores",
@@ -62,9 +67,9 @@ const getHistoricoPartidosQuery = async () => {
 };
 const getHistoricoPartidosPorNombreQuery = async (jugadores) => {
   return await Partido.
-  find({
-    $or: [{ jugador1: { $in: jugadores } }, { jugador2: { $in: jugadores } }],
-  }).populate("usuario", "nombre img")
+    find({
+      $or: [{ jugador1: { $in: jugadores } }, { jugador2: { $in: jugadores } }],
+    }).populate("usuario", "nombre img")
     .populate("deporte", "nombre img");
 };
 
